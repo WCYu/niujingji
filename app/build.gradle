@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         targetSdkVersion 25
         minSdkVersion 15
@@ -12,6 +12,13 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        //添加部分
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
 
         manifestPlaceholders = [
                 GETUI_APP_ID    : "ku4SDNyeos7MP4pXpynZe9",
@@ -53,6 +60,7 @@ dependencies {
     //条件选择器库
     //图片轮播库
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //noinspection GradleCompatible
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.squareup.retrofit2:retrofit:2.0.1'
