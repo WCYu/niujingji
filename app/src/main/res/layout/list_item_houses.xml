@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:paddingBottom="28px"
+        android:paddingLeft="24px"
+        android:paddingRight="24px"
+        android:paddingTop="28px">
+
+        <ImageView
+            android:id="@+id/iv_houses"
+            android:layout_width="284px"
+            android:layout_height="144px"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/tv_houses_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24px"
+            android:layout_marginTop="4px"
+            android:layout_toRightOf="@+id/iv_houses"
+            android:singleLine="true"
+            android:text="冠捷大厦"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="@dimen/text_size_l" />
+
+        <TextView
+            android:id="@+id/tv_houses_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_houses_name"
+            android:layout_marginLeft="24px"
+            android:layout_marginTop="22px"
+            android:layout_toRightOf="@+id/iv_houses"
+            android:text="¥11"
+            android:textColor="@color/colorOrange"
+            android:textSize="@dimen/text_size_l" />
+
+        <TextView
+            android:id="@+id/tv_houses_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tv_houses_price"
+            android:layout_toRightOf="@+id/tv_houses_price"
+            android:text="元/㎡/天起"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/text_size_s" />
+
+        <ImageView
+            android:id="@+id/iv_houses_location_icon"
+            android:layout_width="18px"
+            android:layout_height="24px"
+            android:layout_below="@+id/tv_houses_price"
+            android:layout_marginLeft="24px"
+            android:layout_marginTop="22px"
+            android:layout_toRightOf="@+id/iv_houses"
+            android:src="@mipmap/location_icon" />
+
+        <TextView
+            android:id="@+id/tv_houses_location"
+            android:layout_width="164px"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_houses_location_icon"
+            android:layout_marginLeft="8px"
+            android:layout_toRightOf="@+id/iv_houses_location_icon"
+            android:singleLine="true"
+            android:text="朝阳-三元桥"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/text_size_s" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="24px"
+            android:background="@color/colorLine"
+            android:layout_below="@+id/tv_houses_price"
+            android:layout_marginTop="22px"
+            android:layout_toRightOf="@+id/tv_houses_location"/>
+
+        <ImageView
+            android:id="@+id/iv_houses_type_icon"
+            android:layout_width="24px"
+            android:layout_height="24px"
+            android:layout_below="@+id/tv_houses_price"
+            android:layout_marginLeft="32px"
+            android:layout_marginTop="22px"
+            android:layout_toRightOf="@+id/tv_houses_location"
+            android:src="@mipmap/houses_icon" />
+
+        <TextView
+            android:id="@+id/tv_houses_type"
+            android:layout_width="164px"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_houses_type_icon"
+            android:layout_marginLeft="8px"
+            android:layout_toRightOf="@+id/iv_houses_type_icon"
+            android:singleLine="true"
+            android:text="写字楼"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/text_size_s" />
+
+    </RelativeLayout>
+
+</LinearLayout>

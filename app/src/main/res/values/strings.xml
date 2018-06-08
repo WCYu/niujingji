@@ -1,0 +1,135 @@
+<resources>
+    <string name="app_name">牛经纪</string>
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="loading">加载中...</string>
+
+    <string name="setting">设置</string>
+
+    <string name="counselor">顾问</string>
+
+    <string name="message">消息</string>
+
+    <string name="exit">退出登录</string>
+
+    <string name="add">添加</string>
+
+    <string name="upd_password">修改密码</string>
+    <string name="version">版本</string>
+
+    <string name="add_client">新增客户</string>
+    <string name="service">客服</string>
+
+    <string name="focus_on_weChat_public">关注微信公众号</string>
+    <string name="add_focus_on_weChat_public">微信添加公众号:牛经纪</string>
+    <string name="qq_service">客服QQ</string>
+    <string name="add_qq_service">添加联系客服:2515341286</string>
+    <string name="hot_line">在线热线</string>
+    <string name="call_hot_line">拨打统一公司电话:4006169688</string>
+
+    <string name="please_input_search_content">请输入编号\\客户姓名</string>
+    <string name="phone_num">手机号</string>
+    <string name="please_input_phone_num">请输入手机号</string>
+    <string name="verification_code">验证码</string>
+    <string name="please_input_verification_code">请输入验证码</string>
+    <string name="get_verification_code">获取验证码</string>
+    <string name="old_password">原始密码</string>
+    <string name="please_input_old_password">请输入原始密码</string>
+    <string name="password">密码</string>
+    <string name="please_input_password">请输入密码</string>
+    <string name="new_password">新密码</string>
+    <string name="please_input_password_again">请再次输入密码</string>
+    <string name="confirm_password">确认密码</string>
+    <string name="verification_code_login">验证码登录</string>
+    <string name="forget_password">忘记密码？</string>
+    <string name="login">登录</string>
+    <string name="new_user_register">新用户注册</string>
+    <string name="referral_code">推荐码</string>
+    <string name="please_input_referral_code">请输入推荐码</string>
+    <string name="read_and_agree">我已阅读并同意</string>
+    <string name="user_agreement">《用户协议》</string>
+    <string name="confirm">确定</string>
+    <string name="submit">提交</string>
+    <string name="save_measure">保存量房</string>
+
+    <string name="client">首页</string>
+    <string name="business">商务</string>
+    <string name="wallet">钱包</string>
+    <string name="find">发现</string>
+    <string name="building">楼盘</string>
+    <string name="mine">我</string>
+
+    <string name="serial_number">编号：</string>
+
+    <string name="head_photo">头像</string>
+    <string name="name">姓名</string>
+    <string name="gender">性别</string>
+    <string name="age">年龄</string>
+    <string name="birthday">生日</string>
+    <string name="phone">电话</string>
+    <string name="mailbox">邮箱</string>
+    <string name="area">地区</string>
+
+    <string name="has_withdraw">已提现</string>
+    <string name="balance">余额</string>
+
+    <string name="this_month">本月</string>
+    <string name="month_income">累计</string>
+
+    <string name="bank_card">银行卡</string>
+    <string name="please_bind_yourself_bank_card">请绑定持卡人本人的银行卡</string>
+    <string name="please_input_name">请输入姓名</string>
+    <string name="please_input_phone">请输入电话</string>
+    <string name="please_input_name_importance">请输入姓名(必填)</string>
+    <string name="please_input_phone_num_importance">请输入手机号(必填)</string>
+    <string name="please_input_bank_card_num">请输入银行卡号</string>
+    <string name="please_choice_bank">请选择开户行</string>
+    <string name="bank_name">开户行</string>
+    <string name="sub">提交</string>
+    <string name="tip_one">• 请认真填写本人银行卡号</string>
+    <string name="tip_two">• 如有错误后果由自己承担</string>
+    <string name="my_balance">我的余额</string>
+    <string name="withdraw_deposit">提现</string>
+    <string name="first_withdraw_deposit_set_pwd">首次提现设置体现密码</string>
+    <string name="please_set_bank_pwd">请慎重设置密码</string>
+    <string name="withdraw_deposit_pwd">提现密码</string>
+    <string name="set_pwd">设置密码</string>
+    <string name="confirm_pwd">确认密码</string>
+    <string name="to_bank_card">到账银行卡</string>
+    <string name="withdraw_deposit_price">提现金额</string>
+    <string name="please_input_withdraw_deposit_price">请输入提现金额</string>
+    <string name="please_input_withdraw_deposit_pwd">请输入提现密码</string>
+
+    <string name="client_name">客户姓名</string>
+    <string name="phone_number">手机号码</string>
+    <string name="company_name">公司名称</string>
+    <string name="acreage">面积(㎡)</string>
+    <string name="measure_location">量房地址</string>
+    <string name="client_type">客户类型</string>
+    <string name="wx_number">微信号</string>
+    <string name="tc_type">套餐选择</string>
+
+    <string name="please_input_company_name">请输入公司名称</string>
+    <string name="please_input_acreage">请输入面积</string>
+    <string name="please_input_measure_location">请输入量房地址</string>
+    <string name="please_input_wx_number">请输入微信号</string>
+
+    //登录模块
+    <string name="login_phone">手机号</string>
+    <string name="login_phonehint">请输入手机号</string>
+    <string name="login_verifycode">验证码</string>
+    <string name="login_verifycodehint">请输入验证码</string>
+    <string name="login_verifycodeget">获取验证码</string>
+    <string name="login_pwd">密 码</string>
+    <string name="login_pwdhint">请输入密码</string>
+    <color name="textorange">#f8701b</color>
+    <string name="textback">请输入</string>
+    <string name="textxuanze">请选择</string>
+
+</resources>

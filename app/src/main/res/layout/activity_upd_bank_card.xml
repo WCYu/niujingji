@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBG"
+    android:orientation="vertical"
+    tools:context="com.rxjy.niujingji.activity.UpdBankCardActivity">
+
+    <include layout="@layout/include_header_layout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px"
+        android:text="@string/please_bind_yourself_bank_card"
+        android:textColor="@color/colorBlackLight"
+        android:textSize="@dimen/text_size_s" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="24px">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px">
+
+            <TextView
+                android:id="@+id/tv_upd_bank_card_name"
+                android:layout_width="130px"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/name"
+                android:textColor="@color/colorBlackLight"
+                android:textSize="@dimen/text_size_l" />
+
+            <EditText
+                android:id="@+id/et_upd_bank_card_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_upd_bank_card_name"
+                android:background="@null"
+                android:hint="@string/please_input_name"
+                android:textColor="@color/colorBlackLight"
+                android:textColorHint="@color/colorGray"
+                android:textSize="@dimen/text_size_l" />
+
+            <TextView
+                android:id="@+id/tv_upd_bank_card_name_line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_input_line"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px">
+
+            <TextView
+                android:id="@+id/tv_upd_bank_card_num"
+                android:layout_width="130px"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/bank_card"
+                android:textColor="@color/colorBlackLight"
+                android:textSize="@dimen/text_size_l" />
+
+            <EditText
+                android:id="@+id/et_upd_bank_card_num"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_upd_bank_card_num"
+                android:background="@null"
+                android:hint="@string/please_input_bank_card_num"
+                android:inputType="number"
+                android:textColor="@color/colorBlackLight"
+                android:textColorHint="@color/colorGray"
+                android:textSize="@dimen/text_size_l" />
+
+            <ImageView
+                android:id="@+id/iv_upd_bank_card_tip"
+                android:layout_width="36px"
+                android:layout_height="36px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/tip_icon" />
+
+            <TextView
+                android:id="@+id/tv_upd_bank_card_num_line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_input_line"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px">
+
+            <TextView
+                android:id="@+id/tv_choice_bank_text"
+                android:layout_width="130px"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/bank_name"
+                android:textColor="@color/colorBlackLight"
+                android:textSize="@dimen/text_size_l" />
+
+            <TextView
+                android:id="@+id/tv_choice_bank"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/tv_choice_bank_text"
+                android:gravity="center_vertical"
+                android:text="@string/please_choice_bank"
+                android:textColor="@color/colorBlackLight"
+                android:textSize="@dimen/text_size_l" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_input_line"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:orientation="vertical"
+        android:padding="24px">
+
+        <Button
+            android:id="@+id/btn_upd_bank_card"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:background="@drawable/selector_btn_sub"
+            android:text="@string/sub"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_l" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_upd_bank_card_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40px"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="40px"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tip_one"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="@dimen/text_size_l" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tip_two"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="@dimen/text_size_l" />
+
+    </LinearLayout>
+
+</LinearLayout>

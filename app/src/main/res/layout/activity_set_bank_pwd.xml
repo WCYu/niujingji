@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBG"
+    tools:context="com.rxjy.niujingji.activity.SetBankPwdActivity">
+
+    <include layout="@layout/include_header_layout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px"
+        android:text="@string/please_bind_yourself_bank_card"
+        android:textColor="@color/colorBlackLight"
+        android:textSize="@dimen/text_size_s" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="24px">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px">
+
+            <TextView
+                android:id="@+id/tv_set_bank_pwd_pwd_text"
+                android:layout_width="150px"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/withdraw_deposit_pwd"
+                android:textColor="@color/colorBlackLight"
+                android:textSize="@dimen/text_size_l" />
+
+            <EditText
+                android:id="@+id/et_set_bank_pwd_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_set_bank_pwd_pwd_text"
+                android:background="@null"
+                android:hint="@string/withdraw_deposit_pwd"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:textColor="@color/colorBlackLight"
+                android:textColorHint="@color/colorGray"
+                android:textSize="@dimen/text_size_l" />
+
+            <TextView
+                android:id="@+id/tv_set_bank_pwd_pwd_line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_input_line"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px">
+
+            <TextView
+                android:id="@+id/tv_set_bank_pwd_confirm_pwd_text"
+                android:layout_width="150px"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/confirm_pwd"
+                android:textColor="@color/colorBlackLight"
+                android:textSize="@dimen/text_size_l" />
+
+            <EditText
+                android:id="@+id/et_set_bank_pwd_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_set_bank_pwd_confirm_pwd_text"
+                android:background="@null"
+                android:hint="@string/confirm_pwd"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:textColor="@color/colorBlackLight"
+                android:textColorHint="@color/colorGray"
+                android:textSize="@dimen/text_size_l" />
+
+            <TextView
+                android:id="@+id/tv_set_bank_pwd_confirm_pwd_line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_input_line"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:orientation="vertical"
+        android:padding="24px">
+
+        <Button
+            android:id="@+id/btn_set_bank_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:background="@drawable/selector_btn_sub"
+            android:text="@string/sub"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_l" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

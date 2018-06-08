@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:padding="20px">
+
+        <TextView
+            android:id="@+id/tv_list_item_wallet_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="@dimen/text_size_l" />
+
+        <TextView
+            android:id="@+id/tv_list_item_wallet_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="34px" />
+
+        <TextView
+            android:id="@+id/tv_list_item_wallet_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_list_item_wallet_state"
+            android:layout_marginRight="32px"
+            android:layout_marginTop="24px"
+            android:layout_toLeftOf="@id/tv_list_item_wallet_price"
+            android:textColor="@color/colorGrayDark"
+            android:textSize="@dimen/text_size_m" />
+
+        <ImageView
+            android:id="@+id/iv_list_item_wallet_time_icon"
+            android:layout_width="22px"
+            android:layout_height="22px"
+            android:layout_below="@id/tv_list_item_wallet_content"
+            android:layout_marginTop="26px"
+            android:src="@mipmap/time_icon" />
+
+        <TextView
+            android:id="@+id/tv_list_item_wallet_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_list_item_wallet_content"
+            android:layout_marginLeft="8px"
+            android:layout_marginTop="24px"
+            android:layout_toRightOf="@id/iv_list_item_wallet_time_icon"
+            android:textColor="@color/colorGrayDark"
+            android:textSize="@dimen/text_size_s" />
+
+    </RelativeLayout>
+
+</LinearLayout>

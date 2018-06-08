@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBG"
+    android:orientation="vertical"
+    tools:context="com.rxjy.niujingji.activity.MapActivity">
+
+    <include layout="@layout/include_header_layout" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/mv_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"></com.baidu.mapapi.map.MapView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="190px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/iv_selector"
+            android:padding="24px">
+
+            <LinearLayout
+                android:id="@+id/lin_traffic"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:id="@+id/iv_traffic"
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/traffic_icon" />
+
+                <TextView
+                    android:id="@+id/tv_traffic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="地铁/公交"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_traffic_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_catering"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:id="@+id/iv_catering"
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/catering_icon" />
+
+                <TextView
+                    android:id="@+id/tv_catering"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="快餐/餐厅"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_catering_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_bank"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:id="@+id/iv_bank"
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/bank_icon" />
+
+                <TextView
+                    android:id="@+id/tv_bank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="银行/ATM"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_bank_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lin_hotel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:id="@+id/iv_hotel"
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/hotel_icon" />
+
+                <TextView
+                    android:id="@+id/tv_hotel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="酒店/住宿"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_hotel_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

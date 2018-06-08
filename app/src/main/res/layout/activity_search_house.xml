@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBG"
+    android:orientation="vertical"
+    tools:context="com.rxjy.niujingji.activity.SearchHouseActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="54px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24px"
+            android:gravity="center"
+            android:paddingRight="20px"
+            android:src="@mipmap/back_icon"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/iv_back">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="46px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24px"
+                android:layout_marginRight="24px"
+                android:layout_toLeftOf="@+id/tv_cancel"
+                android:background="@drawable/shape_orange_dark"
+                android:hint="请输入大厦名或地点"
+                android:paddingLeft="24px"
+                android:paddingRight="24px"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteDark"
+                android:textSize="@dimen/text_size_m" />
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24px"
+                android:text="取消"
+                android:textColor="@color/colorWhiteDark"
+                android:textSize="@dimen/text_size_m" />
+
+            <ImageView
+                android:id="@+id/iv_key_word_search"
+                android:layout_width="24px"
+                android:layout_height="24px"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:layout_toLeftOf="@+id/tv_cancel"
+                android:src="@mipmap/search_icon" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorLine" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/lin_hot_word"
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40px"
+            android:gravity="bottom"
+            android:paddingLeft="24px"
+            android:text="搜索热词"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="@dimen/text_size_s" />
+
+        <GridView
+            android:id="@+id/gv_hot_word"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:horizontalSpacing="20px"
+            android:numColumns="3"
+            android:padding="24px"
+            android:verticalSpacing="20px"></GridView>
+
+    </LinearLayout>
+
+    <com.rxjy.niujingji.widget.xlistview.XListView
+        android:id="@+id/xlv_hot_word"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.rxjy.niujingji.widget.xlistview.XListView>
+
+</LinearLayout>

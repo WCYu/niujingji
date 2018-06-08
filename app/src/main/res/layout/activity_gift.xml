@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_header_layout" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginTop="30px"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80px"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:src="@drawable/ic_titlebg" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15px"
+            android:layout_toEndOf="@+id/imageView2"
+            android:layout_toRightOf="@+id/imageView2"
+            android:text="礼品信息"
+            android:textSize="@dimen/text_size_m"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginLeft="50px"/>
+    <RelativeLayout
+        android:id="@+id/rl_gift"
+        android:background="@color/colorWhite"
+        android:layout_width="fill_parent"
+        android:layout_height="80px">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:textSize="@dimen/text_size_s"
+            android:text="礼       品"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:id="@+id/tv_gift"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@+id/textView3"
+            android:textSize="@dimen/text_size_s"
+            android:text="请选择" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="30px"
+            android:layout_height="30px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10px"
+            android:layout_toEndOf="@+id/tv_gift"
+            android:layout_toRightOf="@+id/tv_gift"
+            android:src="@drawable/xiala" />
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginLeft="50px"/>
+
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:layout_width="fill_parent"
+        android:layout_height="80px">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textSize="@dimen/text_size_s"
+            android:text="倾向颜色" />
+
+        <EditText
+            android:id="@+id/et_colorlike"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView6"
+            android:layout_marginLeft="50px"
+            android:inputType="textPersonName"
+            android:hint="请输入"
+            android:background="@null"
+            android:textSize="@dimen/text_size_s"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginTop="30px"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="80px"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="40px"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:src="@drawable/ic_titlebg" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15px"
+            android:layout_toRightOf="@+id/imageView8"
+            android:text="订单信息"
+            android:textSize="@dimen/text_size_m"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginLeft="50px"/>
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:layout_width="fill_parent"
+        android:layout_height="80px">
+
+        <TextView
+            android:id="@+id/textView111"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textSize="@dimen/text_size_s"
+            android:text="联  系  人" />
+
+        <EditText
+            android:id="@+id/et_person"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView111"
+            android:layout_marginLeft="50px"
+            android:inputType="textPersonName"
+            android:hint="请输入"
+            android:background="@null"
+            android:textSize="@dimen/text_size_s"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginLeft="50px"/>
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:layout_width="fill_parent"
+        android:layout_height="80px">
+
+        <TextView
+            android:id="@+id/textView112"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textSize="@dimen/text_size_s"
+            android:text="电        话" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView112"
+            android:layout_marginLeft="50px"
+            android:inputType="numberPassword"
+            android:maxLength="11"
+            android:hint="请输入"
+            android:text=""
+            android:background="@null"
+            android:textSize="@dimen/text_size_s"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"
+        android:layout_marginLeft="50px"/>
+    <RelativeLayout
+        android:background="@color/colorWhite"
+        android:layout_width="fill_parent"
+        android:layout_height="80px">
+
+        <TextView
+            android:id="@+id/textView113"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:textSize="@dimen/text_size_s"
+            android:text="收货地址" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/textView113"
+            android:layout_marginLeft="50px"
+            android:inputType="textPersonName"
+            android:hint="请输入"
+            android:background="@null"
+            android:textSize="@dimen/text_size_s"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.3px"
+        android:background="@color/line_color"/>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/tv_getgift"
+            android:layout_width="fill_parent"
+            android:layout_height="100px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_l"
+            android:textColor="@color/colorWhite"
+            android:text="领取礼品" />
+    </RelativeLayout>
+
+</LinearLayout>

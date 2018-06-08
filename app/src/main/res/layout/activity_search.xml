@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBG"
+    android:orientation="vertical"
+    tools:context="com.rxjy.niujingji.activity.SearchActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="54px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24px"
+            android:gravity="center"
+            android:paddingRight="20px"
+            android:src="@mipmap/back_icon" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="74px"
+            android:layout_toRightOf="@id/iv_back">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:hint="@string/please_input_search_content"
+                android:textColor="@color/colorWhite"
+                android:textColorHint="@color/colorWhiteDark"
+                android:textSize="@dimen/text_size_l" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="54px"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:paddingRight="20px"
+                android:src="@mipmap/search_icon" />
+
+            <TextView
+                android:id="@+id/tv_search_line"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorWhiteDark"
+                android:enabled="false" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorLine" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_search_data_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="500px"
+            android:layout_height="600px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100px"
+            android:src="@mipmap/not_search_data" />
+
+        <TextView
+            android:id="@+id/tv_search_data_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="640px"
+            android:text="请输入搜索内容！"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="30px" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>

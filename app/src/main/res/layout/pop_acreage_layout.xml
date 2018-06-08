@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120px"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_pop_acreage_left"
+            android:layout_width="156px"
+            android:layout_height="50px"
+            android:background="@drawable/shape_gray"
+            android:hint="最小面积"
+            android:inputType="number"
+            android:paddingLeft="20px"
+            android:textColor="@color/colorBlackLight"
+            android:textColorHint="@color/colorGray"
+            android:textSize="@dimen/text_size_m" />
+
+        <View
+            android:layout_width="40px"
+            android:layout_height="1px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
+            android:background="@color/colorLine" />
+
+        <EditText
+            android:id="@+id/et_pop_acreage_right"
+            android:layout_width="156px"
+            android:layout_height="50px"
+            android:background="@drawable/shape_gray"
+            android:hint="最大面积"
+            android:inputType="number"
+            android:paddingLeft="20px"
+            android:textColor="@color/colorBlackLight"
+            android:textColorHint="@color/colorGray"
+            android:textSize="@dimen/text_size_m" />
+
+        <Button
+            android:id="@+id/btn_pop_acreage"
+            android:layout_width="90px"
+            android:layout_height="50px"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/selector_btn_sub"
+            android:text="提交"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_m"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <ListView
+        android:id="@+id/lv_pop_acreage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>

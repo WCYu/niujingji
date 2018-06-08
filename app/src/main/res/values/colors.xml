@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#fe853c</color>
+    <color name="colorPrimaryDark">#f8701b</color>
+    <color name="colorAccent">#fe853c</color>
+
+    <color name="iv_selector">#66000000</color>
+
+    <color name="colorTransparency">#00000000</color>
+
+    <color name="colorWhite">#fff</color>
+
+    <color name="colorWhiteDark">#fdceb2</color>
+
+    <color name="colorBG">#f4f3f9</color>
+
+    <color name="fill_color">#dfdbdb</color>
+
+    <color name="colorLine">#dcdcdc</color>
+
+    <color name="colorGrayLight">#c9c9c9</color>
+
+    <color name="colorGray">#c9caca</color>
+
+    <color name="colorGrayDark">#727171</color>
+
+    <color name="colorBlackLight">#595757</color>
+
+    <color name="colorBlack">#000</color>
+
+    <color name="colorBlueLight">#67bbef</color>
+
+    <color name="colorBlue">#00a0ea</color>
+
+    <color name="colorGreen">#39d27f</color>
+
+    <color name="colorOrange">#ffb951</color>
+
+    <color name="colorOrangeDark">#df5d0c</color>
+
+    <color name="colorRedLight">#ef434f</color>
+
+    <color name="text_red">#e60012</color>
+    <color name="cor666">#666</color>
+    <color name="colordark_the">#888888</color>
+    <color name="colorline">#DDDDDD</color>
+    <color name="textgreytwo">#9fa0a0</color>
+
+</resources>

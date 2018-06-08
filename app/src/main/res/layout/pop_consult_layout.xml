@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:background="@color/colorBG"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务时间      9:00-22:00"
+            android:textColor="@color/colorGrayDark"
+            android:textSize="@dimen/text_size_l" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160px"
+        android:background="@color/colorBG"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/lin_qq"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="66px"
+                android:layout_height="66px"
+                android:layout_marginRight="24px"
+                android:src="@mipmap/qq_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24px"
+                android:text="在线咨询"
+                android:textColor="@color/colorGrayDark"
+                android:textSize="@dimen/text_size_l" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_service"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="66px"
+                android:layout_height="66px"
+                android:layout_marginLeft="24px"
+                android:src="@mipmap/service_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24px"
+                android:text="400电话"
+                android:textColor="@color/colorGrayDark"
+                android:textSize="@dimen/text_size_l" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/colorLine" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:background="@color/colorWhite"
+        android:text="取消"
+        android:textColor="@color/colorGrayDark"
+        android:textSize="@dimen/text_size_l" />
+
+</LinearLayout>

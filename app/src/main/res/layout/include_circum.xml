@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:padding="24px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10分钟步行圈"
+            android:textColor="@color/colorBlackLight"
+            android:textSize="@dimen/text_size_l" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24px"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/traffic_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="地铁/公交"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_traffic_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/catering_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="快餐/餐厅"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_catering_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/bank_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="银行/ATM"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_bank_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10px"
+                android:layout_weight="1"
+                android:background="@drawable/shape_radio_button_normal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10px">
+
+                <ImageView
+                    android:layout_width="44px"
+                    android:layout_height="40px"
+                    android:src="@mipmap/hotel_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="酒店/住宿"
+                    android:textColor="@color/colorBlackLight"
+                    android:textSize="@dimen/text_size_m" />
+
+                <TextView
+                    android:id="@+id/tv_hotel_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:textColor="@color/colorGray"
+                    android:textSize="@dimen/text_size_s" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
