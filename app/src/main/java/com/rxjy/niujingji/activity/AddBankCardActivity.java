@@ -31,6 +31,7 @@ import static com.rxjy.niujingji.commons.App.cardNo;
 
 public class AddBankCardActivity extends BaseActivity<AddBankCardPresenter> implements AddBankCardContract.View {
 
+
     @Bind(R.id.tv_title)
     TextView tvTitle;
     @Bind(R.id.et_add_bank_card_name)
