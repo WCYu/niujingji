@@ -55,17 +55,17 @@
         <activity android:name=".activity.SetBankPwdActivity" />
         <activity android:name=".activity.WithdrawDepositActivity" />
         <activity android:name=".activity.WelcomeActivity" />
-        <activity android:name=".activity.MsgDetailsActivity"/>
-        <activity android:name=".activity.CustomerActivity"></activity>
+        <activity android:name=".activity.MsgDetailsActivity" />
+        <activity android:name=".activity.CustomerActivity" />
         <activity android:name=".activity.LogoActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      <activity android:name=".activity.TextLoginActivity"></activity>
+        <activity android:name=".activity.TextLoginActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -130,12 +130,13 @@
         <activity android:name=".activity.RoomDetailActivity" />
         <activity android:name=".activity.MapActivity" />
         <activity android:name=".activity.GiftPickUpActivity" />
-        <activity android:name=".activity.WalletActivity"></activity>
+        <activity android:name=".activity.WalletActivity" />
         <!-- 下线 -->
-        <activity android:name=".activity.DownLineActivity"></activity>
-        <!--咯盘-->
-        <activity android:name=".fragment.HousesActivity"></activity>
-        <activity android:name=".activity.RecommendingActivity"></activity>
+        <activity android:name=".activity.DownLineActivity" />
+        <!-- 咯盘 -->
+        <activity android:name=".fragment.HousesActivity" />
+        <activity android:name=".activity.RecommendingActivity" />
+        <activity android:name=".activity.more.DianPuActivity"></activity>
     </application>
 
 </manifest>

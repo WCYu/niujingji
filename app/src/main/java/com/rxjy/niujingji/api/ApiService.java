@@ -144,6 +144,17 @@ public interface ApiService {
     );
 
     /**
+     * 首页列表
+     */
+    @GET("AppAgent/APP_GetAppNews")
+    Observable<String> getHomeList(
+            @Query("cardNo") String cardNo,
+            @Query("page") int pageIndex,
+            @Query("rows") int pageSize,
+            @Query("token") String token
+    );
+
+    /**
      * 修改用户信息
      */
     @FormUrlEncoded

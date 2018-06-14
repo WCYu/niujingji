@@ -47,7 +47,7 @@ public class HousesActivity extends BaseActivity<HousePresenter> implements Hous
     @Bind(R.id.tv_location)
     TextView tvLocation;
     @Bind(R.id.lin_location)
-    ImageView linLocation;
+    LinearLayout linLocation;
     @Bind(R.id.lin_search)
     LinearLayout linSearch;
     @Bind(R.id.cb_houses_area)

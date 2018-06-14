@@ -1,7 +1,9 @@
 package com.rxjy.niujingji.fragment;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.rxjy.niujingji.R;
 import com.rxjy.niujingji.activity.NewsDetailActivity;
+import com.rxjy.niujingji.adapter.HomeListAdapter;
 import com.rxjy.niujingji.adapter.NewsListAdapter;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
@@ -32,10 +35,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by AAA on 2017/7/26.
+ * A simple {@link Fragment} subclass.
  */
+public class NewHomeFragment extends BaseFragment<NewsListPresenter> implements NewsListContract.View, AdapterView.OnItemClickListener, XListView.IXListViewListener  {
 
-public class FindFragment extends BaseFragment<NewsListPresenter> implements NewsListContract.View, AdapterView.OnItemClickListener, XListView.IXListViewListener {
+
+    public NewHomeFragment() {
+        // Required empty public constructor
+    }
     @Bind(R.id.iv_back)
     ImageView ivBack;
     @Bind(R.id.tv_title)
@@ -43,11 +50,11 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
     @Bind(R.id.xlv_find)
     XListView xlvFind;
 
-    public static final String TITLE = "发现";
+    public static final String TITLE = "首页";
 
-    private NewsListAdapter mAdapter;
+    private HomeListAdapter mAdapter;
 
-    private List<NewsListInfo.NewsList.NewsInfo> newsList;
+    private List<HomeBean.BodyBean.ListBean> newsList;
 
     private List<NewsListInfo.NewsList.BannerInfo> bannerList;
 
@@ -59,7 +66,7 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
 
     @Override
     protected int getFragmentLayout() {
-        return R.layout.fragment_find;
+        return R.layout.fragment_new_home;
     }
 
     @Override
@@ -78,7 +85,7 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
 
         newsList = new ArrayList<>();
 
-        mAdapter = new NewsListAdapter(getActivity(), newsList);
+        mAdapter = new HomeListAdapter(getActivity(), newsList);
 
         xlvFind.setAdapter(mAdapter);
 
@@ -88,9 +95,9 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
 
         xlvFind.setOnItemClickListener(this);
 
-        //获取新闻列表接口
-        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize);
-//        mPresenter.getNewsList("00000010", pageIndex, pageSize);
+        //获取新闻列表接口https://api.niujingji.cn:8183/AppAgent/APP_GetAppNews?cardNo=%2001012480&page=%201&rows=%2010&token=%2010F0CC6F16010F62A8F11170D939E84F
+//        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize);
+        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize,"2010F0CC6F16010F62A8F11170D939E84F");
 
     }
 
@@ -108,13 +115,13 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
     @Override
     public void onResume() {
         super.onResume();
-        MobclickAgent.onPageStart("发现");
+        MobclickAgent.onPageStart("首页");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        MobclickAgent.onPageEnd("发现");
+        MobclickAgent.onPageEnd("首页");
     }
 
     @Override
@@ -134,15 +141,19 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
     @Override
     public void responseNewsListData(List<NewsListInfo.NewsList.NewsInfo> dataList) {
         onLoad();
-        newsList.clear();
-        newsList.addAll(dataList);
-        mAdapter.notifyDataSetChanged();
-        isShowLoad(dataList.size());
+//        newsList.clear();
+//        newsList.addAll(dataList);
+//        mAdapter.notifyDataSetChanged();
+//        isShowLoad(dataList.size());
     }
 
     @Override
     public void responseNewsListDataHome(List<HomeBean.BodyBean.ListBean> dataList) {
-
+        onLoad();
+        newsList.clear();
+        newsList.addAll(dataList);
+        mAdapter.notifyDataSetChanged();
+        isShowLoad(dataList.size());
     }
 
     @Override
@@ -153,10 +164,10 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
 
     @Override
     public void responseNewsListLoadMoreData(List<NewsListInfo.NewsList.NewsInfo> dataList) {
-        onLoad();
-        newsList.addAll(dataList);
-        mAdapter.notifyDataSetChanged();
-        isShowLoad(dataList.size());
+//        onLoad();
+//        newsList.addAll(dataList);
+//        mAdapter.notifyDataSetChanged();
+//        isShowLoad(dataList.size());
     }
 
     @Override
@@ -216,7 +227,7 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        NewsListInfo.NewsList.NewsInfo info = newsList.get(position - 2);
+        HomeBean.BodyBean.ListBean info = newsList.get(position - 2);
         Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
         intent.putExtra(Constants.ACTION_TO_NEWS_DETAIL_NEWS_ID, info.getId());
         startActivity(intent);
@@ -226,7 +237,7 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
     public void onRefresh() {
         pageIndex = 1;
         //获取新闻列表接口
-        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize);
+        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize,"2010F0CC6F16010F62A8F11170D939E84F");
 //        mPresenter.getNewsList("00000010", pageIndex, pageSize);
     }
 
@@ -234,7 +245,7 @@ public class FindFragment extends BaseFragment<NewsListPresenter> implements New
     public void onLoadMore() {
         pageIndex++;
         //获取新闻列表接口
-        mPresenter.getNewsListLoadMore(App.cardNo, pageIndex, pageSize);
+        mPresenter.getNewsListLoadMore(App.cardNo, pageIndex, pageSize,"2010F0CC6F16010F62A8F11170D939E84F");
 //        mPresenter.getNewsListLoadMore("00000010", pageIndex, pageSize);
     }
 

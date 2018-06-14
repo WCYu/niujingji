@@ -27,6 +27,7 @@ import com.rxjy.niujingji.entity.VersionInfo;
 import com.rxjy.niujingji.fragment.FindFragment;
 import com.rxjy.niujingji.fragment.HomeFragment;
 import com.rxjy.niujingji.fragment.MineFragment;
+import com.rxjy.niujingji.fragment.NewHomeFragment;
 import com.rxjy.niujingji.fragment.WalletFragmentNew;
 import com.rxjy.niujingji.mvp.contract.NjjContract;
 import com.rxjy.niujingji.mvp.presenter.NjjPresenter;
@@ -105,7 +106,7 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
     //碎片的集合
     private List<Fragment> fragmentList;
 
-    private HomeFragment homeFragment;
+    private NewHomeFragment homeFragment;
     private WalletFragmentNew walletFragment;
     private FindFragment findFragment;
     //private HousesActivity housesFragment;
@@ -174,7 +175,7 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
     private void initFragment() {
         //初始化碎片
         if (homeFragment == null)
-            homeFragment = new HomeFragment();
+            homeFragment = new NewHomeFragment();
         if (walletFragment == null)
             walletFragment = new WalletFragmentNew();
         if (findFragment == null)

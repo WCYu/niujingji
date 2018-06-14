@@ -37,15 +37,20 @@ import com.rxjy.niujingji.entity.ClientListInfo;
 import com.rxjy.niujingji.entity.GiftGetBean;
 import com.rxjy.niujingji.mvp.contract.HomeContract;
 import com.rxjy.niujingji.mvp.presenter.HomePresenter;
+import com.rxjy.niujingji.utils.OkhttpUtils;
 import com.rxjy.niujingji.widget.TopPopWindow;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 

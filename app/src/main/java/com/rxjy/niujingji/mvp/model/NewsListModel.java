@@ -27,4 +27,20 @@ public class NewsListModel implements NewsListContract.Model
                 .getNewsList(cardNo, pageIndex, pageSize)
                 .compose(RxSchedulers.<String>switchThread());
     }
+
+
+    public Observable<String> getNewsList(String cardNo, int pageIndex, int pageSize,String token)
+    {
+        return ApiEngine.getInstance().getSwApiService()
+                .getHomeList(cardNo, pageIndex, pageSize,token)
+                .compose(RxSchedulers.<String>switchThread());
+    }
+
+
+    public Observable<String> getNewsListLoadMore(String cardNo, int pageIndex, int pageSize,String token)
+    {
+        return ApiEngine.getInstance().getSwApiService()
+                .getHomeList(cardNo, pageIndex, pageSize,token)
+                .compose(RxSchedulers.<String>switchThread());
+    }
 }
