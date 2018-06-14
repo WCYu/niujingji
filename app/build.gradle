@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.1'
     defaultConfig {
         targetSdkVersion 25
         minSdkVersion 15
@@ -72,7 +72,6 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.0'
     compile 'com.umeng.analytics:analytics:latest.integration'
-
     compile 'com.android.support:multidex:1.0.0'
     testCompile 'junit:junit:4.12'
     compile files('libs/BaiduLBS_Android.jar')
