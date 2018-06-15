@@ -217,7 +217,8 @@
                     android:layout_marginLeft="20px"
                     android:layout_marginRight="10px"
                     android:layout_toRightOf="@+id/tv_spare"
-                    android:src="@mipmap/ic_find" />
+                    android:src="@mipmap/ic_find"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:id="@+id/tv_views"
@@ -227,6 +228,7 @@
                     android:layout_marginLeft="10px"
                     android:textColor="@color/cor666"
                     android:layout_toRightOf="@+id/iv_viewse"
+                    android:visibility="gone"
                     android:textSize="26px" />
 
 

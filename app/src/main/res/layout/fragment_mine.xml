@@ -68,15 +68,15 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="36px"
             android:src="@mipmap/arrow_left" />
+
         <ImageView
-            android:layout_toLeftOf="@+id/uselessImage"
+            android:id="@+id/ewmImage"
             android:layout_width="40px"
             android:layout_height="40px"
             android:layout_centerVertical="true"
             android:layout_marginRight="36px"
-           android:id="@+id/ewmImage"
-            android:src="@mipmap/code"
-            />
+            android:layout_toLeftOf="@+id/uselessImage"
+            android:src="@mipmap/code" />
     </RelativeLayout>
 
     <RelativeLayout

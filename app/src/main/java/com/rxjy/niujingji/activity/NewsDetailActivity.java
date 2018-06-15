@@ -1,12 +1,14 @@
 package com.rxjy.niujingji.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.rxjy.niujingji.R;
+import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
 import com.rxjy.niujingji.commons.base.BaseActivity;
 import com.rxjy.niujingji.commons.base.BasePresenter;
@@ -47,7 +49,7 @@ public class NewsDetailActivity extends BaseActivity {
 
     private void initNewsDetail() {
 
-        String url = "http://news.rx/front/app_details.html?id=" + ID;
+        String url= "http://news.rx/front/app_details.html?id="+ID+"&cardNo="+ App.cardNo;
 
         wvNewsDetail.loadUrl(url);
 

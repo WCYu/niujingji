@@ -19,9 +19,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class ApiEngine {
 
     private static final String RS_API_HOST = "https://api.dcwzg.com:9191/";
-    private static final String RX_API_HOST = "http://news.rx:9090/";
+    private static final String RX_API_HOST = "http://wpsnew.rxjy.com:9090/";
     private static final String BD_API_HOST = "http://api.map.baidu.com/";
-
 //    private static final String SW_API_HOST = "http://swb.api.cs/";
     public static final String SW_API_HOST = "https://api.niujingji.cn:8183/";
     public static final String INFORMATION=RS_API_HOST+"actionapi/AN_Home/ShowMyInfo";
