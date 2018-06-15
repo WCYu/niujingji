@@ -124,7 +124,7 @@ public interface ApiService {
      * 上传头像
      */
     @Multipart
-    @POST("actionapi/AppHome/UpdateImages")
+    @POST("actionapi/AN_Home/UpdateImages")
     Observable<String> upHeaderPicture(
             @Part("token") String token,
             @Part("cardNo") String cardNo,
@@ -158,7 +158,7 @@ public interface ApiService {
      * 修改用户信息
      */
     @FormUrlEncoded
-    @POST("actionapi/AppHome/UpdateMyInfo")
+    @POST("actionapi/AN_Home/UpdateMyInfo")
     Observable<String> updateUserInfo(
             @Field("token") String token,
             @Field("cardNo") String cardNo,
