@@ -176,7 +176,7 @@
                     android:layout_height="88px"
                     android:gravity="center_vertical"
                     android:paddingLeft="30px"
-                    android:text="设计师服务"
+                    android:text="经纪人服务"
                     android:textSize="32px" />
 
                 <View

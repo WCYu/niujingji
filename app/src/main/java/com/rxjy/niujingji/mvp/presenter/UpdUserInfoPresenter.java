@@ -82,6 +82,7 @@ public class UpdUserInfoPresenter extends UpdUserInfoContract.Presenter {
 
                     @Override
                     public void onNext(String s) {
+                        Log.e("tag","上传头像"+s);
                         SubInfo info = JSONUtils.toObject(s, SubInfo.class);
                         if (info.getStatusCode() == 0) {
                             mView.responseUpPicture();

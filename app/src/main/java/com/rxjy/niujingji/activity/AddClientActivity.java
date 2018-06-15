@@ -120,19 +120,19 @@ public class AddClientActivity extends BaseActivity<AddClientPresenter> implemen
 
     private void initTc() {
 
-        etPhoneNum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-
-                } else {
-                    String phone = etPhoneNum.getText().toString().trim();
-                    if(phone!=null&&phone.length()>0){
-                        mPresenter.getphone(phone);
-                    }
-                }
-            }
-        });
+//        etPhoneNum.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+//            @Override
+//            public void onFocusChange(View v, boolean hasFocus) {
+//                if (hasFocus) {
+//
+//                } else {
+//                    String phone = etPhoneNum.getText().toString().trim();
+//                    if (phone != null && phone.length() > 0) {
+//                        mPresenter.getphone(phone);
+//                    }
+//                }
+//            }
+//        });
 
         groupList = new ArrayList<>();
 
@@ -224,8 +224,16 @@ public class AddClientActivity extends BaseActivity<AddClientPresenter> implemen
                     showToast("请输入手机号");
                     return;
                 }
-                if (!StringUtils.isMobileNO(phoneNum)) {
-                    showToast("请输入正确的手机号");
+                if (!Verification(companyName)) {
+                    showToast("请输入公司名称");
+                    return;
+                }
+                if (!Verification(acreage)) {
+                    showToast("请输入量房地址");
+                    return;
+                }
+                if (clientTypeOne == 0) {
+                    showToast("请输入项目类型");
                     return;
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -248,6 +256,15 @@ public class AddClientActivity extends BaseActivity<AddClientPresenter> implemen
     public void responseTc(List<TcInfo.BodyBean.TC> dataList) {
         tcList.clear();
         tcList.addAll(dataList);
+    }
+
+    private boolean Verification(String msg) {
+        if (msg.equals("")) {
+            return false;
+
+        } else {
+            return true;
+        }
     }
 
     @Override

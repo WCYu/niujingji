@@ -3,10 +3,8 @@ package com.rxjy.niujingji.fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,21 +12,34 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.rxjy.niujingji.R;
-import com.rxjy.niujingji.activity.CounselorInfoActivity;
 import com.rxjy.niujingji.activity.MsgListActivity;
 import com.rxjy.niujingji.activity.SettingActivity;
 import com.rxjy.niujingji.activity.UserInfoActivity;
 import com.rxjy.niujingji.activity.WalletActivity;
+import com.rxjy.niujingji.api.ApiEngine;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
 import com.rxjy.niujingji.commons.base.BaseFragment;
 import com.rxjy.niujingji.commons.base.BasePresenter;
+import com.rxjy.niujingji.commons.utils.JSONUtils;
+
+import com.rxjy.niujingji.commons.utils.ShowUtils;
+import com.rxjy.niujingji.entity.UserInfoBean;
+import com.rxjy.niujingji.utils.OkhttpUtils;
 import com.rxjy.niujingji.widget.RoundAngleImageView;
 import com.umeng.analytics.MobclickAgent;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by AAA on 2017/7/26.
@@ -53,6 +64,8 @@ public class MineFragment extends BaseFragment {
     private static int state;
     @Bind(R.id.rl_wallet)
     RelativeLayout rlWallet;
+    @Bind(R.id.ewmImage)
+    ImageView ewmImage;
 
     @Override
     protected int getFragmentLayout() {
@@ -70,13 +83,45 @@ public class MineFragment extends BaseFragment {
     }
 
     private void initUserData() {
-        tvMineName.setText(App.baseInfo.getNickName() == null ? "昵称" : App.baseInfo.getNickName());
-//        tvMineCard.setText("账号：" + App.cardNo);
-        tvMineCard.setText(App.baseInfo.getPhone() == null ? "昵称" : App.baseInfo.getPhone());
-        RequestOptions options = new RequestOptions();
-        options.placeholder(R.mipmap.head_portrait_icon);
-        options.error(R.mipmap.head_portrait_icon);
-        Glide.with(getActivity()).load(App.baseInfo.getImage()).apply(options).into(rivMine);
+
+        Map<String, Object> hashMap = new HashMap<>();
+        hashMap.put("cardNo", App.cardNo);
+        hashMap.put("token", App.token);
+        OkhttpUtils.doPost(ApiEngine.INFORMATION, hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ShowUtils.Toastshort(getContext(), e.getMessage());
+                    }
+                });
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String string = response.body().string();
+                Log.e("tag",string);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        UserInfoBean userInfoBean = JSONUtils.toObject(string, UserInfoBean.class);
+                        if (userInfoBean.getStatusCode() == 0) {
+
+                            List<UserInfoBean.BodyBean> body = userInfoBean.getBody();
+                            UserInfoBean.BodyBean bodyBean = body.get(0);
+                            tvMineName.setText(bodyBean.getU_name() == null ? "昵称" : bodyBean.getU_name());
+                            tvMineCard.setText("账号：" + bodyBean.getCard_no());
+                            RequestOptions options = new RequestOptions();
+                            options.placeholder(R.mipmap.userimage);
+                            options.error(R.mipmap.userimage);
+                            Glide.with(getActivity()).load(bodyBean.getImage()).apply(options).into(rivMine);
+                        } else {
+                            showToast(userInfoBean.getStatusMsg());
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -99,19 +144,10 @@ public class MineFragment extends BaseFragment {
             tvState.setVisibility(View.INVISIBLE);
         }
     }
-
     @Override
     public void onPause() {
         super.onPause();
         MobclickAgent.onPageEnd("我");
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
     }
 
     @Override

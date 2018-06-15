@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <include layout="@layout/include_header_layout" />
 
     <RelativeLayout
+        android:id="@+id/coustactivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,7 +43,7 @@
                         android:layout_toRightOf="@id/tv_add_Project_typetext"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:text="请选择"
+                        android:hint="请选择"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -76,8 +78,8 @@
                         android:layout_toRightOf="@id/tv_project_attributestext"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:hint="@string/please_input_wx_number"
-                        android:text="请选择"
+                        android:hint="@string/textxuanze"
+
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -91,7 +93,42 @@
                         android:enabled="false" />
 
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/qita_xiuqu"
+                    android:layout_width="match_parent"
+                    android:layout_height="80px">
 
+                    <TextView
+                        android:id="@+id/tv_add_xuqiu"
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="需        求"
+                        android:textColor="@color/colorBlackLight"
+                        android:textSize="@dimen/text_size_l" />
+
+                    <TextView
+                        android:id="@+id/tv_xuqiu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/tv_add_xuqiu"
+                        android:background="@null"
+                        android:hint="@string/textxuanze"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorBlackLight"
+                        android:textColorHint="@color/colorGray"
+                        android:textSize="@dimen/text_size_l" />
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/selector_input_line"
+                        android:enabled="false" />
+
+                </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="80px">
@@ -147,6 +184,9 @@
                         android:layout_centerVertical="true"
                         android:layout_toRightOf="@id/tv_add_Telephone_text"
                         android:background="@null"
+
+                        android:inputType="number"
+                        android:maxLines="11"
                         android:gravity="center_vertical"
                         android:hint="@string/textback"
                         android:textColor="@color/colorBlackLight"
@@ -199,7 +239,11 @@
                         android:enabled="false" />
 
                 </RelativeLayout>
-
+                  <LinearLayout
+                      android:id="@+id/linearLayout_one"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="80px">
@@ -222,6 +266,7 @@
                         android:background="@null"
                         android:gravity="center_vertical"
                         android:hint="@string/textback"
+
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -296,7 +341,7 @@
                         android:layout_toRightOf="@id/tv_add_resources_text"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:hint="@string/textback"
+                        android:hint="@string/textxuanze"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -332,7 +377,7 @@
                         android:layout_toRightOf="@id/tv_add_House_text"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:hint="@string/textback"
+                        android:hint="@string/textxuanze"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -350,6 +395,7 @@
                 <RelativeLayout
                     android:id="@+id/mianzu"
                     android:layout_width="match_parent"
+
                     android:layout_height="80px">
 
                     <TextView
@@ -421,6 +467,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/jiaofangone"
                     android:layout_width="match_parent"
                     android:layout_height="80px">
 
@@ -433,7 +480,7 @@
                         android:textColor="@color/colorBlackLight"
                         android:textSize="@dimen/text_size_l" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_add_make"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -441,7 +488,7 @@
                         android:layout_toRightOf="@id/tv_add_make_text"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:hint="@string/textback"
+                        android:hint="@string/textxuanze"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -498,7 +545,7 @@
                     android:layout_height="80px">
 
                     <TextView
-                        android:id="@+id/tv_add_demand_text"
+                        android:id="@+id/tv_add_demand_one"
                         android:layout_width="150px"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -511,7 +558,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_toRightOf="@id/tv_add_demand_text"
+                        android:layout_toRightOf="@id/tv_add_demand_one"
                         android:background="@null"
                         android:gravity="center_vertical"
                         android:hint="@string/textxuanze"
@@ -551,7 +598,7 @@
                         android:layout_toRightOf="@id/tv_add_money_text"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:hint="@string/textback"
+                        android:hint="@string/textxuanze"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -588,6 +635,7 @@
                         android:layout_toRightOf="@id/tv_add_Price_text"
                         android:background="@null"
                         android:hint="@string/textback"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -733,6 +781,7 @@
                         android:layout_toRightOf="@id/tv_add_fuwu_text"
                         android:background="@null"
                         android:hint="@string/textxuanze"
+                        android:gravity="center_vertical"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -797,7 +846,7 @@
                         android:textColor="@color/colorBlackLight"
                         android:textSize="@dimen/text_size_l" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_add_Renovation"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -805,6 +854,7 @@
                         android:layout_toRightOf="@id/tv_add_Renovation_text"
                         android:background="@null"
                         android:hint="@string/textback"
+                        android:gravity="center_vertical"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -926,7 +976,7 @@
                         android:enabled="false" />
 
                 </RelativeLayout>
-
+                  </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="80px">
@@ -961,7 +1011,11 @@
                         android:enabled="false" />
 
                 </RelativeLayout>
-
+               <LinearLayout
+                   android:id="@+id/LinearLayout_two"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="80px">
@@ -974,7 +1028,6 @@
                         android:text="性       质"
                         android:textColor="@color/colorBlackLight"
                         android:textSize="@dimen/text_size_l" />
-
                     <TextView
                         android:id="@+id/tv_add_Nature"
                         android:layout_width="match_parent"
@@ -983,10 +1036,10 @@
                         android:layout_toRightOf="@id/tv_add_Nature_text"
                         android:background="@null"
                         android:hint="@string/textxuanze"
+                        android:gravity="center_vertical"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
-
                     <TextView
 
                         android:layout_width="match_parent"
@@ -1031,6 +1084,7 @@
                         android:background="@drawable/selector_input_line"
                         android:enabled="false" />
 
+
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -1046,7 +1100,7 @@
                         android:textColor="@color/colorBlackLight"
                         android:textSize="@dimen/text_size_l" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/tv_add_Setup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -1054,6 +1108,7 @@
                         android:layout_toRightOf="@id/tv_add_Setup_text"
                         android:background="@null"
                         android:hint="@string/textback"
+                        android:gravity="center_vertical"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -1114,7 +1169,8 @@
                         android:layout_marginRight="19dp"
                         android:background="@null"
                         android:gravity="center_vertical"
-                        android:hint="@string/please_input_wx_number"
+                        android:hint="@string/textxuanze"
+                        android:visibility="gone"
                         android:textColor="@color/colorBlackLight"
                         android:textColorHint="@color/colorGray"
                         android:textSize="@dimen/text_size_l" />
@@ -1170,7 +1226,7 @@
                         android:textSize="@dimen/text_size_l" />
 
                     <TextView
-                        android:id="@+id/tv_add_Famous"
+                        android:id="@+id/tv_add_Famous_two"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
@@ -1228,6 +1284,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="80px">
 
@@ -1261,18 +1318,38 @@
                         android:enabled="false" />
 
                 </RelativeLayout>
+               </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/btn_upd_client"
+        <LinearLayout
+            android:id="@+id/btn_upd_client_group"
             android:layout_width="match_parent"
-            android:layout_height="80px"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:background="@drawable/selector_btn_sub"
-            android:text="@string/save_measure"
-            android:textColor="@color/colorWhite"
-            android:textSize="34px" />
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="80px"
+                android:background="#f8701b"
+                android:text="保存"
+                android:layout_gravity="bottom"
+                android:textColor="@color/colorWhite"
+                android:textSize="34px" />
+            <Button
+
+                android:id="@+id/btn_upd_client"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="80px"
+
+                android:layout_gravity="bottom"
+                android:background="#fe853c"
+                android:text="@string/submit"
+                android:textColor="@color/colorWhite"
+                android:textSize="34px" />
+        </LinearLayout>
+
     </RelativeLayout>
 </LinearLayout>

@@ -137,6 +137,8 @@
         <activity android:name=".fragment.HousesActivity" />
         <activity android:name=".activity.RecommendingActivity" />
         <activity android:name=".activity.more.DianPuActivity"></activity>
+        <activity android:name=".activity.PhotoImageActivity"></activity>
+        <activity android:name=".activity.MoreCustomerActivity"></activity>
     </application>
 
 </manifest>

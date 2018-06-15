@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rxjy.niujingji.R;
-import com.rxjy.niujingji.activity.CustomerActivity;
 import com.rxjy.niujingji.activity.DownLineActivity;
+import com.rxjy.niujingji.activity.MoreCustomerActivity;
 import com.rxjy.niujingji.activity.RecommendingActivity;
 import com.rxjy.niujingji.activity.more.DianPuActivity;
 import com.rxjy.niujingji.commons.App;
@@ -148,7 +148,7 @@ public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> imp
                 startActivity(new Intent(getActivity(), DownLineActivity.class));
                 break;
             case R.id.ly_kehu://客户
-                startActivity(new Intent(getActivity(), CustomerActivity.class));
+                startActivity(new Intent(getActivity(), MoreCustomerActivity.class));
                 break;
             case R.id.ly_zhangben://账本
 

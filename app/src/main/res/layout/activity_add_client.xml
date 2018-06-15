@@ -352,7 +352,7 @@
             android:layout_height="80px"
             android:layout_gravity="bottom"
             android:background="@drawable/selector_btn_sub"
-            android:text="@string/save_measure"
+            android:text="保存"
             android:textColor="@color/colorWhite"
             android:textSize="34px" />
 

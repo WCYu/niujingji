@@ -1,8 +1,12 @@
 package com.rxjy.niujingji.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -10,25 +14,37 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
-import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.rxjy.niujingji.R;
+import com.rxjy.niujingji.api.ApiEngine;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
 import com.rxjy.niujingji.commons.base.BaseActivity;
+import com.rxjy.niujingji.commons.utils.AutoUtils;
+import com.rxjy.niujingji.commons.utils.JSONUtils;
+
 import com.rxjy.niujingji.commons.utils.PrefUtils;
+import com.rxjy.niujingji.commons.utils.ShowUtils;
+import com.rxjy.niujingji.entity.UserInfoBean;
 import com.rxjy.niujingji.mvp.contract.UpdUserInfoContract;
 import com.rxjy.niujingji.mvp.presenter.UpdUserInfoPresenter;
+import com.rxjy.niujingji.utils.OkhttpUtils;
 import com.rxjy.niujingji.widget.RoundAngleImageView;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.qqtheme.framework.picker.DatePicker;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> implements UpdUserInfoContract.View {
 
@@ -50,6 +66,12 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
     TextView tvArea;
 
     public static final String TITLE = "基本信息";
+    @Bind(R.id.tv_ewm)
+    ImageView tvEwm;
+    @Bind(R.id.tv_gender_sex)
+    RelativeLayout tvGenderSex;
+    @Bind(R.id.rl_user_ewm)
+    RelativeLayout rlUserEwm;
 
     private DatePicker picker;
 
@@ -65,6 +87,9 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
     private String key;
 
     private String path;
+    private String image;
+    private Dialog alertDialog;
+    private String ewm;
 
     @Override
     public int getLayout() {
@@ -110,16 +135,52 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
     }
 
     private void initUserInfo() {
-        tvName.setText(App.baseInfo.getNickName() == null ? "点击添加" : App.baseInfo.getNickName());
-        tvGender.setText(App.baseInfo.getSex() == null ? "点击添加" : App.baseInfo.getSex());
-        tvBirthday.setText(App.baseInfo.getBirthday() == "" ? "点击添加" : App.baseInfo.getBirthday());
-        tvPhone.setText(App.baseInfo.getPhone() == null ? "点击添加" : App.baseInfo.getPhone());
-        tvMailbox.setText(App.baseInfo.getEmail() == null ? "点击添加" : App.baseInfo.getEmail());
-        tvArea.setText(App.personnelInfo.getArea() == null ? "点击添加" : App.personnelInfo.getArea());
-        RequestOptions options = new RequestOptions();
-        options.placeholder(R.mipmap.head_portrait_icon);
-        options.error(R.mipmap.head_portrait_icon);
-        Glide.with(this).load(App.baseInfo.getImage()).apply(options).into(rivHeadPhoto);
+        Map<String, Object> hashMap = new HashMap<>();
+        hashMap.put("cardNo", App.cardNo);
+        hashMap.put("token", App.token);
+        OkhttpUtils.doPost(ApiEngine.INFORMATION, hashMap, new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ShowUtils.Toastshort(UserInfoActivity.this, e.getMessage());
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String string = response.body().string();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        UserInfoBean userInfoBean = JSONUtils.toObject(string, UserInfoBean.class);
+                        if (userInfoBean.getStatusCode() == 0) {
+                            List<UserInfoBean.BodyBean> body = userInfoBean.getBody();
+                            UserInfoBean.BodyBean bodyBean = body.get(0);
+                            tvName.setText(bodyBean.getU_name() == null ? "点击添加" : bodyBean.getU_name());
+                            tvGender.setText(bodyBean.getSex() == null ? "点击添加" : bodyBean.getSex());
+                            tvBirthday.setText(bodyBean.getBirthday_txt() == "" ? "点击添加" : bodyBean.getBirthday_txt());
+                            tvPhone.setText(bodyBean.getPhone() == null ? "点击添加" : bodyBean.getPhone());
+                            tvMailbox.setText(bodyBean.getEmail() == null ? "点击添加" : bodyBean.getEmail());
+                            tvArea.setText(App.personnelInfo.getArea() == null ? "点击添加" : App.personnelInfo.getArea());
+                            RequestOptions options = new RequestOptions();
+                            options.placeholder(R.mipmap.userimage);
+                            options.error(R.mipmap.userimage);
+                            image = bodyBean.getImage();
+                            ewm = bodyBean.getEwm();
+
+                            Glide.with(UserInfoActivity.this).load(bodyBean.getImage()).apply(options).into(rivHeadPhoto);
+                        } else {
+                            showToast(userInfoBean.getStatusMsg());
+                        }
+                    }
+                });
+            }
+        });
+
+
     }
 
     private void startUpdUserInfo(String keyValue, String key, String value) {
@@ -150,14 +211,8 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
         MobclickAgent.onPause(this);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
-    @OnClick({R.id.iv_back, R.id.riv_head_photo, R.id.tv_name, R.id.tv_gender, R.id.tv_birthday, R.id.tv_phone, R.id.tv_mailbox, R.id.tv_area})
+    @OnClick({R.id.iv_back, R.id.riv_head_photo, R.id.Fullname, R.id.tv_gender_sex, R.id.lv_birthday, R.id.tv_phone, R.id.lv_mailbox, R.id.tv_area})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_back:
@@ -165,23 +220,26 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
                 break;
             case R.id.riv_head_photo:
                 // 进入相册 以下是例子：用不到的api可以不写
-                PictureSelector.create(this)
-                        .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()
-                        .imageSpanCount(3)// 每行显示个数 int
-                        .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
-                        .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
-                        .enableCrop(true)// 是否裁剪 true or false
-                        .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-                        .scaleEnabled(false)// 裁剪是否可放大缩小图片 true or false
-                        .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code 
+//                PictureSelector.create(this)
+//                        .openGallery(PictureMimeType.ofImage())//全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()
+//                        .imageSpanCount(3)// 每行显示个数 int
+//                        .selectionMode(PictureConfig.SINGLE)// 多选 or 单选 PictureConfig.MULTIPLE or PictureConfig.SINGLE
+//                        .freeStyleCropEnabled(true)// 裁剪框是否可拖拽 true or false
+//                        .enableCrop(true)// 是否裁剪 true or false
+//                        .withAspectRatio(1, 1)// int 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+//                        .scaleEnabled(false)// 裁剪是否可放大缩小图片 true or false
+//                        .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code 
+                ArrayList<String> mlist = new ArrayList<>();
+                mlist.add(image);
+                startActivity(new Intent(this, PhotoImageActivity.class).putStringArrayListExtra(Constants.JUMPLIST, mlist));
                 break;
-            case R.id.tv_name:
-                startUpdUserInfo("姓名", "nick_name", App.baseInfo.getNickName());
+            case R.id.Fullname:
+                startUpdUserInfo("姓名", "u_name", tvName.getText().toString());
                 break;
-            case R.id.tv_gender:
+            case R.id.tv_gender_sex:
                 sexPicker.show();
                 break;
-            case R.id.tv_birthday:
+            case R.id.lv_birthday:
                 picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
                     @Override
                     public void onDatePicked(String year, String month, String day) {
@@ -195,11 +253,13 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
                 break;
             case R.id.tv_phone:
                 break;
-            case R.id.tv_mailbox:
-                startUpdUserInfo("邮箱", "email", App.baseInfo.getEmail());
+            case R.id.lv_mailbox:
+                startUpdUserInfo("邮箱", "email", tvMailbox.getText().toString());
                 break;
             case R.id.tv_area:
                 break;
+                default:
+                    break;
         }
     }
 
@@ -220,14 +280,14 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
 
     @Override
     public void responseUpdateData() {
-        switch (key) {
-            case "birthday":
-                App.baseInfo.setBirthday(time);
-                break;
-            case "sex":
-                App.baseInfo.setSex(mSex);
-                break;
-        }
+//        switch (key) {
+//            case "birthday":
+//                App.baseInfo.setBirthday(time);
+//                break;
+//            case "sex":
+//                App.baseInfo.setSex(mSex);
+//                break;
+//        }
         showToast("上传成功");
     }
 
@@ -268,5 +328,31 @@ public class UserInfoActivity extends BaseActivity<UpdUserInfoPresenter> impleme
     @Override
     public void hideDialog() {
         dismissLoading();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.rl_user_ewm)
+    public void onViewClicked() {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.newPassword);
+        View inflate = getLayoutInflater().inflate(R.layout.dialog_erweima, null);
+         ImageView imageView= (ImageView) inflate.findViewById(R.id.user_ewm);
+         Glide.with(this).load(ewm).into(imageView);
+        AutoUtils.setSize(this, false, 720, 1280);
+        AutoUtils.auto(inflate);
+        dialog.setView(inflate);
+        inflate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog = dialog.create();
+        alertDialog.show();
     }
 }

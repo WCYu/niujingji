@@ -1,19 +1,16 @@
-package com.rxjy.niujingji.fragment;
+package com.rxjy.niujingji.activity;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.text.ClipboardManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -23,37 +20,24 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rxjy.niujingji.R;
-import com.rxjy.niujingji.activity.AddClientActivity;
-import com.rxjy.niujingji.activity.CustomerActivity;
-import com.rxjy.niujingji.activity.GiftPickUpActivity;
-import com.rxjy.niujingji.activity.SearchActivity;
-import com.rxjy.niujingji.activity.UpdClientActivity;
 import com.rxjy.niujingji.adapter.HomeAdapter;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
 import com.rxjy.niujingji.commons.base.BaseActivity;
-import com.rxjy.niujingji.commons.base.BaseFragment;
 import com.rxjy.niujingji.commons.utils.AutoUtils;
 import com.rxjy.niujingji.entity.ClientListInfo;
 import com.rxjy.niujingji.entity.GiftGetBean;
 import com.rxjy.niujingji.mvp.contract.HomeContract;
 import com.rxjy.niujingji.mvp.presenter.HomePresenter;
-import com.rxjy.niujingji.utils.OkhttpUtils;
 import com.rxjy.niujingji.widget.TopPopWindow;
 import com.umeng.analytics.MobclickAgent;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by AAA on 2017/7/26.
@@ -72,6 +56,8 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
     RelativeLayout rlHome;
 
     public static final String TITLE = "客户";
+    @Bind(R.id.iv_back)
+    ImageView ivBack;
 
     private List<ClientListInfo.ClientInfo> clientList;
 
@@ -82,8 +68,6 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
     private AlertDialog dialog;
 
     private TopPopWindow topPopWindow;
-
-
 
 
     private void initTitle() {
@@ -147,8 +131,9 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + "4006169688"));
                 startActivity(intent);
-                if (dialog != null)
+                if (dialog != null) {
                     dialog.dismiss();
+                }
             }
         });
     }
@@ -187,6 +172,7 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
 
     @Override
     public void initData() {
+        initIntent();
         initTitle();
         initClientData();
         initDialog();
@@ -207,7 +193,16 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
 
     }
 
+    private void initIntent() {
+     boolean   isChanged = getIntent().getBooleanExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, false);
 
+
+        if (!isChanged) {
+
+           // btnUpdClient.setVisibility(View.INVISIBLE);
+        }
+
+    }
     @Override
     public void onPause() {
         super.onPause();
@@ -294,22 +289,19 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ClientListInfo.ClientInfo info = clientList.get(position);
         int state = info.getState();
-//        单子状态为0,2,3,18,21,22可以修改信息
-//        if (state == 0 || state == 3) {
-//            Intent intent = new Intent(getActivity(), UpdClientActivity.class);
-//            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, true);
-//            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
-//            startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
-//        } else {
-//            Intent intent = new Intent(getActivity(), UpdClientActivity.class);
-//            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, false);
-//            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
-//            startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
-//        }
-        Intent intent = new Intent(this, CustomerActivity.class);
-        intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, false);
-        intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
-        startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
+     //   单子状态为0,2,3,18,21,22可以修改信息
+        if (state == 0 || state == 3) {
+            Intent intent = new Intent(this, CustomerActivity.class);
+            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, true);
+            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
+            startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
+        } else {
+            Intent intent = new Intent(this, CustomerActivity.class);
+            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, false);
+            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
+            startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
+        }
+
     }
 
     @Override
@@ -371,4 +363,8 @@ public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements
 
     }
 
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

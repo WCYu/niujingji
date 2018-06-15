@@ -89,11 +89,12 @@ public class AddClientPresenter extends AddClientContract.Presenter {
 
                     @Override
                     public void onNext(String s) {
+                        Log.e("bug",s);
                         AddClientInfo info = JSONUtils.toObject(s, AddClientInfo.class);
                         if (info.getStatusCode() == 0) {
                             ClientListInfo.ClientInfo data = info.getBody();
                             mView.responseClientData(data);
-                        } else {
+                        } else  {
                             mView.responseClientDataError(info.getStatusMsg());
                         }
                     }

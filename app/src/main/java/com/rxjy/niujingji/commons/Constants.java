@@ -91,5 +91,5 @@ public class Constants {
 
     public static final String PHONE="phone";
     public static final String PASSWORD="PASSWORD";
-
+    public static final String JUMPLIST = "Jump";
 }

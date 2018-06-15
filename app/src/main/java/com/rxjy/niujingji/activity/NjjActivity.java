@@ -25,7 +25,6 @@ import com.rxjy.niujingji.entity.IconInfo;
 import com.rxjy.niujingji.entity.IsReadStateInfo;
 import com.rxjy.niujingji.entity.VersionInfo;
 import com.rxjy.niujingji.fragment.FindFragment;
-import com.rxjy.niujingji.fragment.HomeFragment;
 import com.rxjy.niujingji.fragment.MineFragment;
 import com.rxjy.niujingji.fragment.NewHomeFragment;
 import com.rxjy.niujingji.fragment.WalletFragmentNew;

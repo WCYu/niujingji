@@ -97,7 +97,7 @@ public class NewHomeFragment extends BaseFragment<NewsListPresenter> implements 
 
         //获取新闻列表接口https://api.niujingji.cn:8183/AppAgent/APP_GetAppNews?cardNo=%2001012480&page=%201&rows=%2010&token=%2010F0CC6F16010F62A8F11170D939E84F
 //        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize);
-        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize,"2010F0CC6F16010F62A8F11170D939E84F");
+        mPresenter.getNewsList(App.cardNo, pageIndex, pageSize,App.token);
 
     }
 

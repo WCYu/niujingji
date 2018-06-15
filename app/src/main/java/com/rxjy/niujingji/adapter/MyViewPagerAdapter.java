@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-
 import com.rxjy.niujingji.R;
 import com.rxjy.niujingji.commons.utils.ImageLoaderUtil;
 
