@@ -71,7 +71,8 @@ public class MineFragment extends BaseFragment {
 
     private void initUserData() {
         tvMineName.setText(App.baseInfo.getNickName() == null ? "昵称" : App.baseInfo.getNickName());
-        tvMineCard.setText("账号：" + App.cardNo);
+//        tvMineCard.setText("账号：" + App.cardNo);
+        tvMineCard.setText(App.baseInfo.getPhone() == null ? "昵称" : App.baseInfo.getPhone());
         RequestOptions options = new RequestOptions();
         options.placeholder(R.mipmap.head_portrait_icon);
         options.error(R.mipmap.head_portrait_icon);

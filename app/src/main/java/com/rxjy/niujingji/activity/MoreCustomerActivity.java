@@ -31,28 +31,34 @@ import com.rxjy.niujingji.activity.UpdClientActivity;
 import com.rxjy.niujingji.adapter.HomeAdapter;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
+import com.rxjy.niujingji.commons.base.BaseActivity;
 import com.rxjy.niujingji.commons.base.BaseFragment;
 import com.rxjy.niujingji.commons.utils.AutoUtils;
 import com.rxjy.niujingji.entity.ClientListInfo;
 import com.rxjy.niujingji.entity.GiftGetBean;
 import com.rxjy.niujingji.mvp.contract.HomeContract;
 import com.rxjy.niujingji.mvp.presenter.HomePresenter;
+import com.rxjy.niujingji.utils.OkhttpUtils;
 import com.rxjy.niujingji.widget.TopPopWindow;
 import com.umeng.analytics.MobclickAgent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by AAA on 2017/7/26.
  */
-public class HomeFragment extends BaseFragment<HomePresenter> implements HomeContract.View, AdapterView.OnItemClickListener, View.OnClickListener {
+public class MoreCustomerActivity extends BaseActivity<HomePresenter> implements HomeContract.View, AdapterView.OnItemClickListener, View.OnClickListener {
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -77,17 +83,8 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
     private TopPopWindow topPopWindow;
 
-    @Override
-    protected int getFragmentLayout() {
-        return R.layout.fragment_home;
-    }
 
-    @Override
-    protected void FragmentInitData() {
-        initTitle();
-        initClientData();
-        initDialog();
-    }
+
 
     private void initTitle() {
         ivAdd.setVisibility(View.VISIBLE);
@@ -98,7 +95,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 
         clientList = new ArrayList<>();
 
-        mAdapter = new HomeAdapter(getActivity(), clientList);
+        mAdapter = new HomeAdapter(this, clientList);
 
         lvHome.setAdapter(mAdapter);
 
@@ -115,20 +112,21 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
     private void initDialog() {
-        final View dialogView = View.inflate(getActivity(), R.layout.dialog_custom, null);
+        final View dialogView = View.inflate(this, R.layout.dialog_custom, null);
         AutoUtils.auto(dialogView);
-        builder = new AlertDialog.Builder(getActivity());
+        builder = new AlertDialog.Builder(this);
         builder.setView(dialogView);
         dialog = builder.create();
         dialogView.findViewById(R.id.lin_wx).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 得到剪贴板管理器
-                ClipboardManager cmb = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cmb = (ClipboardManager) MoreCustomerActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cmb.setText("牛经纪");
                 showToast("复制成功");
-                if (dialog != null)
+                if (dialog != null) {
                     dialog.dismiss();
+                }
             }
         });
         dialogView.findViewById(R.id.lin_qq).setOnClickListener(new View.OnClickListener() {
@@ -137,8 +135,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
                 //打开QQ并跳转到该联系人的临时会话
                 String url = "mqqwpa://im/chat?chat_type=wpa&uin=2515341286";
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                if (dialog != null)
+                if (dialog != null) {
                     dialog.dismiss();
+                }
             }
         });
         dialogView.findViewById(R.id.lin_phone).setOnClickListener(new View.OnClickListener() {
@@ -161,7 +160,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         if (topPopWindow == null) {
             int displayWidthValue = AutoUtils.getDisplayWidthValue(320);
             int displayHeightValue = AutoUtils.getDisplayHeightValue(240);
-            topPopWindow = new TopPopWindow(getActivity(), this, displayWidthValue, displayHeightValue);
+            topPopWindow = new TopPopWindow(this, this, displayWidthValue, displayHeightValue);
             //监听窗口的焦点事件，点击窗口外面则取消显示
             topPopWindow.getContentView().setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
@@ -182,6 +181,18 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     }
 
     @Override
+    public int getLayout() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    public void initData() {
+        initTitle();
+        initClientData();
+        initDialog();
+    }
+
+    @Override
     protected HomePresenter onCreatePresenter() {
         return new HomePresenter(this);
     }
@@ -193,17 +204,9 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         //客户列表接口
         mPresenter.getClientList(App.cardNo, "");
         mPresenter.getGift(App.cardNo);
-//        ShowGift();
+
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            mPresenter.getGift(App.cardNo);
-//            ShowGift();
-        }
-    }
 
     @Override
     public void onPause() {
@@ -211,13 +214,6 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         MobclickAgent.onPageEnd("客户列表");
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -236,9 +232,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         }
     }
 
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    protected void onDestroy() {
+        super.onDestroy();
         ButterKnife.unbind(this);
     }
 
@@ -249,10 +246,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
                 showTopRightPopMenu();
                 break;
             case R.id.iv_search:
-                startActivity(new Intent(getActivity(), SearchActivity.class));
+                startActivity(new Intent(this, SearchActivity.class));
                 break;
             case R.id.btn_add:
-                startActivityForResult(new Intent(getActivity(), AddClientActivity.class), Constants.REQUEST_CODE_CLIENT_INFO);
+                startActivityForResult(new Intent(this, AddClientActivity.class), Constants.REQUEST_CODE_CLIENT_INFO);
                 break;
         }
     }
@@ -309,7 +306,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
 //            intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
 //            startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
 //        }
-        Intent intent = new Intent(getActivity(), CustomerActivity.class);
+        Intent intent = new Intent(this, CustomerActivity.class);
         intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_IS_CAN_CHANGED, false);
         intent.putExtra(Constants.ACTION_TO_UPD_CLIENT_CLIENT_ID, info.getKeHuBaseID());
         startActivityForResult(intent, Constants.REQUEST_CODE_UPD_CLIENT_INFO);
@@ -320,7 +317,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
         switch (v.getId()) {
             case R.id.lin_add_client:
                 topPopWindow.dismiss();
-                startActivityForResult(new Intent(getActivity(), AddClientActivity.class), Constants.REQUEST_CODE_CLIENT_INFO);
+                startActivityForResult(new Intent(this, AddClientActivity.class), Constants.REQUEST_CODE_CLIENT_INFO);
                 break;
             case R.id.lin_service:
                 topPopWindow.dismiss();
@@ -340,12 +337,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
     private void ShowGift() {
         if (gift_dialog != null && gift_dialog.isShowing()) {
         } else {
-            gift_dialog = new Dialog(getActivity(), R.style.ActionSheetDialogStyleone);
-            view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_gift, null);
+            gift_dialog = new Dialog(this, R.style.ActionSheetDialogStyleone);
+            view = LayoutInflater.from(this).inflate(R.layout.dialog_gift, null);
             gift_dialog.setContentView(view);
             Window window = gift_dialog.getWindow();
             window.setGravity(Gravity.CENTER);
-            WindowManager windowManager = getActivity().getWindowManager();
+            WindowManager windowManager = getWindowManager();
             Display display = windowManager.getDefaultDisplay();
             WindowManager.LayoutParams lp = window.getAttributes();
             lp.width = display.getWidth();
@@ -359,7 +356,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements HomeCon
                 @Override
                 public void onClick(View v) {
                     gift_dialog.dismiss();
-                    startActivity(new Intent(getActivity(), GiftPickUpActivity.class));
+                    startActivity(new Intent(MoreCustomerActivity.this, GiftPickUpActivity.class));
                 }
             });
             ic_cancle = (ImageView) view.findViewById(R.id.ic_cancle);

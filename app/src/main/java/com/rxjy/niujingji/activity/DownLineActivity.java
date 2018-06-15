@@ -40,7 +40,7 @@ public class DownLineActivity extends BaseActivity<DownLinePresenter> implements
     @Override
     public void initData() {
         initID();
-        tvTitleName.setText("下线");
+        tvTitleName.setText("会员");
         Log.d("DownLineActivity", "initData:=== "+App.cardNo);
         mPresenter.getDownLineList(App.cardNo);
 

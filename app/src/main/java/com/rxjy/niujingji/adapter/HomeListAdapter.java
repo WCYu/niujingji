@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.rxjy.niujingji.R;
 import com.rxjy.niujingji.commons.base.SingleBaseAdapter;
 import com.rxjy.niujingji.commons.base.SingleViewHolder;
+import com.rxjy.niujingji.entity.HomeBean;
 import com.rxjy.niujingji.entity.NewsListInfo;
 
 import java.util.List;
@@ -19,11 +20,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Created by Administrator on 2017/6/12.
+ * Created by 阿禹 on 2018/6/9.
  */
-public class NewsListAdapter extends SingleBaseAdapter<NewsListInfo.NewsList.NewsInfo, NewsListAdapter.ViewHolder> {
 
-    public NewsListAdapter(Context context, List<NewsListInfo.NewsList.NewsInfo> datas) {
+public class HomeListAdapter extends SingleBaseAdapter<HomeBean.BodyBean.ListBean, HomeListAdapter.ViewHolder> {
+
+    public HomeListAdapter(Context context, List<HomeBean.BodyBean.ListBean> datas) {
         super(context, datas);
     }
 
@@ -33,13 +35,12 @@ public class NewsListAdapter extends SingleBaseAdapter<NewsListInfo.NewsList.New
     }
 
     @Override
-    public ViewHolder initViewHolder() {
+    public HomeListAdapter.ViewHolder initViewHolder() {
         return new ViewHolder();
     }
 
     @Override
-    public void onBindView(int position, NewsListInfo.NewsList.NewsInfo data, ViewHolder holder) {
-
+    public void onBindView(int position, HomeBean.BodyBean.ListBean data, HomeListAdapter.ViewHolder holder) {
         holder.tvTitle.setText(data.getName());
         holder.tvContect.setText(data.getSummary());
         Log.e("========",data.getSpare1());
@@ -55,17 +56,16 @@ public class NewsListAdapter extends SingleBaseAdapter<NewsListInfo.NewsList.New
         }else if(data.getType()==3){
             holder.llZero.setVisibility(View.GONE);
             holder.llThere.setVisibility(View.VISIBLE);
-            if(data.getContentPic()!=null){
-                Glide.with(context).load(data.getContentPic().get(0)).into(holder.mvImgone);
-                Glide.with(context).load(data.getContentPic().get(1)).into(holder.mvImgtwo);
-                Glide.with(context).load(data.getContentPic().get(2)).into(holder.mvImgthere);
-            }
+//            if(data.getContentPic()!=null){
+//                Glide.with(context).load(data.getContentPic().get(0)).into(holder.mvImgone);
+//                Glide.with(context).load(data.getContentPic().get(1)).into(holder.mvImgtwo);
+//                Glide.with(context).load(data.getContentPic().get(2)).into(holder.mvImgthere);
+//            }
 
         }
-
     }
 
-    class ViewHolder implements SingleViewHolder {
+    public class ViewHolder implements SingleViewHolder {
 
         @Bind(R.id.iv_img)
         ImageView ivImg;

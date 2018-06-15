@@ -13,6 +13,7 @@ import com.rxjy.niujingji.R;
 import com.rxjy.niujingji.activity.CustomerActivity;
 import com.rxjy.niujingji.activity.DownLineActivity;
 import com.rxjy.niujingji.activity.RecommendingActivity;
+import com.rxjy.niujingji.activity.more.DianPuActivity;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.base.BaseFragment;
 import com.rxjy.niujingji.entity.IsReadStateInfo;
@@ -29,10 +30,6 @@ import butterknife.OnClick;
 
 public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> implements WalletFragmentContract.View {
 
-    @Bind(R.id.guwen)
-    LinearLayout guwen;
-    @Bind(R.id.zhuanzheng_line)
-    LinearLayout floorLine;
     @Bind(R.id.tv_tab_wallet_state)
     TextView tvTabWalletState;
     @Bind(R.id.iv_back)
@@ -43,8 +40,29 @@ public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> imp
     LinearLayout courtesy;
     @Bind(R.id.imageView27)
     ImageView imageView27;
-    @Bind(R.id.kehu)
     LinearLayout kehu;
+    @Bind(R.id.iv_add)
+    ImageView ivAdd;
+    @Bind(R.id.red_image)
+    ImageView redImage;
+    @Bind(R.id.ly_dianpu)
+    LinearLayout lyDianpu;
+    @Bind(R.id.ly_huiyuan)
+    LinearLayout lyHuiyuan;
+    @Bind(R.id.ly_kehu)
+    LinearLayout lyKehu;
+    @Bind(R.id.ly_zhangben)
+    LinearLayout lyZhangben;
+    @Bind(R.id.ly_huishou)
+    LinearLayout lyHuishou;
+    @Bind(R.id.ly_keshou)
+    LinearLayout lyKeshou;
+    @Bind(R.id.ly_keyuan)
+    LinearLayout lyKeyuan;
+    @Bind(R.id.ly_fangyuan)
+    LinearLayout lyFangyuan;
+    @Bind(R.id.ly_loupan)
+    LinearLayout lyLoupan;
 
     @Override
     protected int getFragmentLayout() {
@@ -55,24 +73,24 @@ public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> imp
     protected void FragmentInitData() {
         tvTitle.setText("更多");
         ivBack.setVisibility(View.INVISIBLE);
-        floorLine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), HousesActivity.class));
-            }
-        });
+//        floorLine.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getActivity(), HousesActivity.class));
+//            }
+//        });
         courtesy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), RecommendingActivity.class));
             }
         });
-        kehu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CustomerActivity.class));
-            }
-        });
+//        kehu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getActivity(), CustomerActivity.class));
+//            }
+//        });
     }
 
     @Override
@@ -84,12 +102,6 @@ public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> imp
     public void onResume() {
         super.onResume();
         mPresenter.getState(App.cardNo);
-    }
-
-    @OnClick(R.id.guwen)
-    public void onViewClicked() {
-
-        startActivity(new Intent(getActivity(), DownLineActivity.class));
     }
 
 
@@ -125,4 +137,37 @@ public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> imp
         ButterKnife.unbind(this);
     }
 
+    @OnClick({R.id.ly_dianpu, R.id.ly_huiyuan, R.id.ly_kehu, R.id.ly_zhangben, R.id.ly_huishou, R.id.ly_keshou, R.id.ly_keyuan, R.id.ly_fangyuan, R.id.ly_loupan})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ly_dianpu://店铺
+//                startActivity(new Intent(getActivity(), DownLineActivity.class));
+                startActivity(new Intent(getActivity(), DianPuActivity.class));
+                break;
+            case R.id.ly_huiyuan://会员
+                startActivity(new Intent(getActivity(), DownLineActivity.class));
+                break;
+            case R.id.ly_kehu://客户
+                startActivity(new Intent(getActivity(), CustomerActivity.class));
+                break;
+            case R.id.ly_zhangben://账本
+
+                break;
+            case R.id.ly_huishou://会收
+
+                break;
+            case R.id.ly_keshou://客收
+
+                break;
+            case R.id.ly_keyuan://客源
+
+                break;
+            case R.id.ly_fangyuan://房源
+
+                break;
+            case R.id.ly_loupan://楼盘
+                startActivity(new Intent(getActivity(), HousesActivity.class));
+                break;
+        }
+    }
 }
