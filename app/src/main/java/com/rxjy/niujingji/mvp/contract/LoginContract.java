@@ -37,6 +37,8 @@ public interface LoginContract {
 
         void responseLogin(LoginInfo.BodyBean loginInfo);
 
+        void showLoadMessage(String msg);
+
     }
 
     interface Model extends BaseModel {

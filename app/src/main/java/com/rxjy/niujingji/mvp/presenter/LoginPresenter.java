@@ -45,6 +45,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "获取Token失败 = " + e.toString());
+                        mView.showLoadMessage(e.getMessage());
                         onCompleted();
                     }
 
@@ -80,7 +81,9 @@ public class LoginPresenter extends LoginContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "获取用户信息失败 = " + e.toString());
+                        mView.showLoadMessage(e.getMessage());
                         onCompleted();
+
                     }
 
                     @Override
@@ -115,6 +118,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "获取用户信息失败 = " + e.toString());
+                        mView.showLoadMessage(e.getMessage());
                         onCompleted();
                     }
 
@@ -148,6 +152,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "获取用户信息失败 = " + e.toString());
+                        mView.showLoadMessage(e.getMessage());
                         onCompleted();
                     }
 
@@ -181,6 +186,7 @@ public class LoginPresenter extends LoginContract.Presenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.e(TAG, "获取用户信息失败 = " + e.toString());
+                        mView.showLoadMessage(e.getMessage());
                         onCompleted();
                     }
 

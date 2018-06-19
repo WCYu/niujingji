@@ -13,7 +13,7 @@
         android:src="@mipmap/logo_icon" />
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -243,5 +243,20 @@
 
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60px"
+        android:layout_weight="1">
 
+        <TextView
+            android:id="@+id/login_prompt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:textColor="@color/colorRedLight"
+            android:textSize="24px"
+            android:visibility="gone" />
+    </RelativeLayout>
 </LinearLayout>

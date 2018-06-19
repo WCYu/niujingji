@@ -308,4 +308,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void responseLogin(LoginInfo.BodyBean loginInfo) {
 
     }
+
+    @Override
+    public void showLoadMessage(String msg) {
+
+    }
 }

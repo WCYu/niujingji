@@ -83,6 +83,9 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
 
     @Bind(R.id.ll_accountview)
     LinearLayout llAccountview;
+
+    @Bind(R.id.login_prompt)
+    TextView loginPrompt;
     String accountliststr;
     ArrayList<String> accountlist;
     PwdSaveBean pwdSaveBean;
@@ -105,19 +108,19 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
         ed_phone.addTextChangedListener(new MyEditListener(ed_phone));
 
 
-        pwdSaveBean=new PwdSaveBean();
-        accountlist=new ArrayList<>();
+        pwdSaveBean = new PwdSaveBean();
+        accountlist = new ArrayList<>();
         SharedPreferences sp = getSharedPreferences("njj_account", Activity.MODE_PRIVATE);
         accountliststr = sp.getString("njj_accountliststr", null);
-        if(accountliststr!=null&&accountliststr.length()>0){
-            pwdSaveBean= JSONUtils.toObject(accountliststr,PwdSaveBean.class);
+        if (accountliststr != null && accountliststr.length() > 0) {
+            pwdSaveBean = JSONUtils.toObject(accountliststr, PwdSaveBean.class);
             for (int i = 0; i < pwdSaveBean.getPwdlist().size(); i++) {
                 accountlist.add(pwdSaveBean.getPwdlist().get(i));
             }
             ivList.setVisibility(View.VISIBLE);
-            Log.e("accountliststr",accountliststr);
+            Log.e("accountliststr", accountliststr);
             ShowAccount();
-        }else{
+        } else {
             ivList.setVisibility(View.GONE);
         }
     }
@@ -134,23 +137,26 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
 
     @Override
     public void responseTokenError(String msg) {
-    showToast(msg);
+        loginPrompt.setText(msg);
+        loginPrompt.setVisibility(View.VISIBLE);
     }
+
     int issame;
+
     @Override
     public void responseLogin(UserInfo.User data) {
         for (int i = 0; i < accountlist.size(); i++) {
-            if(ed_phone.getText().toString().equals(accountlist.get(i))){
-                issame=1;
+            if (ed_phone.getText().toString().equals(accountlist.get(i))) {
+                issame = 1;
                 break;
             }
         }
-        if(issame!=1){
+        if (issame != 1) {
             SharedPreferences mspaccount = getSharedPreferences("njj_account", Activity.MODE_PRIVATE);
             SharedPreferences.Editor editmspaccount = mspaccount.edit();
             accountlist.add(ed_phone.getText().toString());
             pwdSaveBean.setPwdlist(accountlist);
-            accountliststr= JSONUtils.toString(pwdSaveBean);
+            accountliststr = JSONUtils.toString(pwdSaveBean);
             editmspaccount.putString("njj_accountliststr", accountliststr);
             editmspaccount.commit();
         }
@@ -164,17 +170,18 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
 
     @Override
     public void responseLoginError(String msg) {
-      showToast(msg);
+        loginPrompt.setText(msg);
+        loginPrompt.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showDialog() {
-
+        showLoading();
     }
 
     @Override
     public void hideDialog() {
-
+        dismissLoading();
     }
 
     @Override
@@ -188,6 +195,7 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
                 tv_forgetpwd.setVisibility(View.VISIBLE);
                 ll_toforget.setVisibility(View.VISIBLE);
                 rl_veritycode.setVisibility(View.GONE);
+                loginPrompt.setVisibility(View.GONE);
                 break;
             case 1://用户不存在,获取验证码注册
                 logintype = 1;
@@ -196,9 +204,11 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
                 rl_pwd.setVisibility(View.VISIBLE);
                 tv_forgetpwd.setVisibility(View.GONE);
                 ll_toforget.setVisibility(View.GONE);
+                loginPrompt.setVisibility(View.GONE);
                 break;
             default:
-                showToast(subInfo.getStatusMsg());
+                loginPrompt.setText(subInfo.getStatusMsg());
+                loginPrompt.setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -207,7 +217,7 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
     @Override
     public void responseVerityCode(SubInfo data) {
         int statusCode = data.getStatusCode();
-        Log.e("tag",statusCode+"");
+        Log.e("tag", statusCode + "");
         switch (data.getStatusCode()) {
             case 0://发送成功，，，倒计时。。。
                 updateTime();
@@ -221,15 +231,29 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
 
     @Override
     public void responseLogin(LoginInfo.BodyBean loginInfo) {
-        PrefUtils.putValue(this,Constants.PHONE,phonenum);
-        PrefUtils.putValue(this,Constants.PASSWORD,pwdnum);
-        PrefUtils.putValue(this,Constants.CARD_NO,loginInfo.getCardNo());
-        PrefUtils.putValue(this,Constants.TOKEN,loginInfo.getToken());
+        ll_toforget.setVisibility(View.GONE);
+        PrefUtils.putValue(this, Constants.PHONE, phonenum);
+        PrefUtils.putValue(this, Constants.PASSWORD, pwdnum);
+        PrefUtils.putValue(this, Constants.CARD_NO, loginInfo.getCardNo());
+        PrefUtils.putValue(this, Constants.TOKEN, loginInfo.getToken());
         PrefUtils.putBooleanValue(this, Constants.IS_LOGIN, true);
-        mPresenter.getLoginUserInfo(loginInfo.getCardNo(),loginInfo.getToken());
+        mPresenter.getLoginUserInfo(loginInfo.getCardNo(), loginInfo.getToken());
     }
+
+    @Override
+    public void showLoadMessage(String msg) {
+        if (msg.contains("JSONException")) {
+            loginPrompt.setText("返回数据错误等  系统错误，正在处理中!!!");
+        } else {
+            loginPrompt.setText("网络未连接、不稳定 ：网络连接失败，请检查网络设置");
+        }
+
+        loginPrompt.setVisibility(View.VISIBLE);
+    }
+
     int isshow;
-    @OnClick({R.id.btn_next, R.id.tv_vitifycodeget, R.id.tv_forgetpwd, R.id.ll_toforget,R.id.iv_list})
+
+    @OnClick({R.id.btn_next, R.id.tv_vitifycodeget, R.id.tv_forgetpwd, R.id.ll_toforget, R.id.iv_list})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_next:
@@ -267,25 +291,25 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
                 mPresenter.getInsideVcodeLanding(phonenum, "2");
                 break;
             case R.id.tv_forgetpwd:
-              // startActivity(new Intent(this,ForgetPwdActivity.class).putExtra("phone",getphone));
+                // startActivity(new Intent(this,ForgetPwdActivity.class).putExtra("phone",getphone));
                 break;
             case R.id.ll_toforget:
                 startActivity(new Intent(this, ForgetPwdActivity.class));
                 break;
             case R.id.iv_list:
-            switch (isshow){
-                case 0:
-                    isshow=1;
-                    llAccountview.setVisibility(View.VISIBLE);
-                    btn_next.setVisibility(View.GONE);
-                    break;
-                case 1:
-                    isshow=0;
-                    llAccountview.setVisibility(View.GONE);
-                    btn_next.setVisibility(View.VISIBLE);
-                    break;
-            }
-            break;
+                switch (isshow) {
+                    case 0:
+                        isshow = 1;
+                        llAccountview.setVisibility(View.VISIBLE);
+                        btn_next.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        isshow = 0;
+                        llAccountview.setVisibility(View.GONE);
+                        btn_next.setVisibility(View.VISIBLE);
+                        break;
+                }
+                break;
 
         }
     }
@@ -361,17 +385,18 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
             }
         }.start();
     }
+
     /**
      * 展示账号列表
      */
-    private void ShowAccount(){
-        final AccountListAdapter accountListAdapter=new AccountListAdapter(this,pwdSaveBean.getPwdlist());
+    private void ShowAccount() {
+        final AccountListAdapter accountListAdapter = new AccountListAdapter(this, pwdSaveBean.getPwdlist());
         lvAccountlist.setAdapter(accountListAdapter);
         lvAccountlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {//选中显示，收起列表
                 ed_phone.setText(pwdSaveBean.getPwdlist().get(position));
-                isshow=0;
+                isshow = 0;
                 llAccountview.setVisibility(View.GONE);
                 btn_next.setVisibility(View.VISIBLE);
             }
@@ -383,17 +408,17 @@ public class TextLoginActivity extends BaseActivity<LoginPresenter> implements L
                 accountlist.remove(position);
                 SharedPreferences mspaccount = getSharedPreferences("njj_account", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editmspaccount = mspaccount.edit();
-                accountliststr= JSONUtils.toString(pwdSaveBean);
-                Log.e("删除pwdSaveBean",accountliststr);
+                accountliststr = JSONUtils.toString(pwdSaveBean);
+                Log.e("删除pwdSaveBean", accountliststr);
                 accountListAdapter.notifyDataSetChanged();
-                if(pwdSaveBean.getPwdlist().size()<=0){
+                if (pwdSaveBean.getPwdlist().size() <= 0) {
                     editmspaccount.putString("njj_accountliststr", null);
                     editmspaccount.commit();
                     ivList.setVisibility(View.GONE);
-                    isshow=0;
+                    isshow = 0;
                     llAccountview.setVisibility(View.GONE);
                     btn_next.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     editmspaccount.putString("njj_accountliststr", accountliststr);
                     editmspaccount.commit();
                 }
