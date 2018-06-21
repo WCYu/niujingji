@@ -27,6 +27,7 @@ public interface NjjContract {
     interface Model extends BaseModel {
 
         Observable<String> getVersionInfo(
+                int version
 
         );
 
@@ -39,7 +40,7 @@ public interface NjjContract {
     abstract class Presenter extends BasePresenter<View, Model> {
 
         public abstract void getVersionInfo(
-
+                int version
         );
 
         public abstract void getState(

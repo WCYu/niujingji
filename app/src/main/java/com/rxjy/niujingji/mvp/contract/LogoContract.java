@@ -28,6 +28,8 @@ public interface LogoContract {
 
         void responseLogin(LoginInfo.BodyBean loginInfo);
 
+        void toLogin();
+
     }
 
     interface Model extends BaseModel {

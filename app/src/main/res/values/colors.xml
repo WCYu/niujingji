@@ -46,4 +46,9 @@
     <color name="colorline">#DDDDDD</color>
     <color name="textgreytwo">#9fa0a0</color>
 
+
+    <color name="colorblue">#4F94F3</color>
+    <color name="colortextcolor">#595757</color>
+    <color name="colorback">#E5E5E5</color>
+
 </resources>

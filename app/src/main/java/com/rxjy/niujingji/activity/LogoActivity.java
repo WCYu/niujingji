@@ -66,8 +66,8 @@ public class LogoActivity extends BaseActivity<LogoPresenter> implements LogoCon
                         String cardNo = PrefUtils.getValue(LogoActivity.this, Constants.CARD_NO);
                         String token = PrefUtils.getValue(LogoActivity.this, Constants.TOKEN);
 //
-                        mPresenter.getLoginUserInfo(cardNo,token);
-                       // mPresenter.AppLogin(phone,password,"","2");
+                        mPresenter.getLoginUserInfo(cardNo, token);
+                        // mPresenter.AppLogin(phone,password,"","2");
                     }
                 }, 2000);
             }
@@ -168,5 +168,11 @@ public class LogoActivity extends BaseActivity<LogoPresenter> implements LogoCon
         App.token = loginInfo.getToken();
         PrefUtils.putBooleanValue(this, Constants.IS_LOGIN, true);
         mPresenter.getLoginUserInfo(App.cardNo, App.token);
+    }
+
+    @Override
+    public void toLogin() {
+        startActivity(new Intent(this, TextLoginActivity.class));
+        finish();
     }
 }

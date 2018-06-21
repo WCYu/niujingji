@@ -12,9 +12,9 @@ import rx.Observable;
 
 public class NjjModel implements NjjContract.Model {
     @Override
-    public Observable<String> getVersionInfo() {
-        return ApiEngine.getInstance().getSwApiService()
-                .getVersionInfo()
+    public Observable<String> getVersionInfo(int version) {
+        return ApiEngine.getInstance().getRsApiService()
+                .getVersionInfo(version,2)
                 .compose(RxSchedulers.<String>switchThread());
     }
 

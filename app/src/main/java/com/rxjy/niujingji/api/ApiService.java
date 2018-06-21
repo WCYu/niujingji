@@ -275,12 +275,14 @@ public interface ApiService {
             @Query("card_no") String cardNo
     );
 
-    /**
-     * 获取版本信息接口
-     */
-    @GET("AppAgent/GetAndroidVersion")
-    Observable<String> getVersionInfo(
 
+    /**
+     * 获取版本信息
+     *///http://api.gc.rxjy.com/app/version_com.rxjy.pm.json
+    @GET("actionapi/AppCurrencyHome/IsAndroidUpdated")
+    Observable<String> getVersionInfo(
+            @Query("Version") int version,
+            @Query("AppId") int AppId
     );
 
     /**

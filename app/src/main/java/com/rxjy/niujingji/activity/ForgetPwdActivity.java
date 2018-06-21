@@ -115,12 +115,7 @@ public class ForgetPwdActivity extends BaseActivity<ForgetPwdPresenter> implemen
         return new ForgetPwdPresenter(this);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
     @OnClick({R.id.iv_back, R.id.btn_verification_code, R.id.btn_forget_password})
     public void onViewClicked(View view) {

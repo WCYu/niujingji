@@ -5,10 +5,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -19,6 +22,7 @@ import com.rxjy.niujingji.R;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
 import com.rxjy.niujingji.commons.base.BaseActivity;
+import com.rxjy.niujingji.commons.utils.AutoUtils;
 import com.rxjy.niujingji.commons.utils.CheckPermissionsUitl;
 import com.rxjy.niujingji.commons.utils.DownLoadApk;
 import com.rxjy.niujingji.entity.IconInfo;
@@ -144,7 +148,7 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
     protected void onResume() {
         super.onResume();
         //获取版本信息
-        mPresenter.getVersionInfo();
+        mPresenter.getVersionInfo(Integer.parseInt(App.getVersionCode()));
         //获取未读状态
         mPresenter.getState(App.cardNo);
         //统计时长
@@ -188,8 +192,8 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
         //将碎片添加到集合中
         fragmentList.add(homeFragment);
         fragmentList.add(walletFragment);
-      fragmentList.add(findFragment);
-     //   fragmentList.add(housesFragment);
+        fragmentList.add(findFragment);
+        //   fragmentList.add(housesFragment);
         fragmentList.add(mineFragment);
     }
 
@@ -280,11 +284,11 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
 
     @Override
     public void responseStateData(IsReadStateInfo.BodyBean data) {
-      //  发送广播
+        //  发送广播
 //        Intent intent = new Intent(Constants.ACTION_INFORMATION_MINE);
 //        intent.putExtra(Constants.KEY_STATE, data.getCount());
 //        sendBroadcast(intent);
-        if (data.getCount() <=0) {
+        if (data.getCount() <= 0) {
             tvWalletState.setVisibility(View.INVISIBLE);
         } else {
             tvWalletState.setVisibility(View.VISIBLE);
@@ -294,18 +298,34 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
     @Override
     public void responseVersionData(final VersionInfo.Version data) {
         if (data.getVersionNo() > Integer.parseInt(App.getVersionCode())) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("版本升级");
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.newPassword);
+
             builder.setCancelable(false);// 设置点击屏幕Dialog不消失
-            builder.setMessage(data.getContent());
-            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            View inflate = getLayoutInflater().inflate(R.layout.upgrade_layout, null);
+            AutoUtils.setSize(this, false, 720, 1280);
+            AutoUtils.auto(inflate);
+            TextView confirmupgrade = (TextView) inflate.findViewById(R.id.confirm_upgrade);
+            TextView updatecontent = (TextView) inflate.findViewById(R.id.update_content);
+            TextView colse = (TextView) inflate.findViewById(R.id.close);
+            if (data.getForce() == 1) {
+                builder.setCancelable(false);// 设置点击屏幕Dialog不消失
+                colse.setVisibility(View.GONE);
+
+            } else {
+                builder.setCancelable(true);// 设置点击屏幕Dialog不消失
+            }
+            String content = data.getContent();
+            if (!TextUtils.isEmpty(content)) {
+                updatecontent.setText(content);
+            }
+            confirmupgrade.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                public void onClick(View v) {
                     DownLoadApk downLoadApk = new DownLoadApk(NjjActivity.this);
                     downLoadApk.downLoadApk(data);
                 }
             });
-            builder.setNegativeButton("取消", null);
+            builder.setView(inflate);
             AlertDialog dialog = builder.create();
             dialog.show();
         }

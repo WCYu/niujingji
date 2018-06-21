@@ -25,8 +25,8 @@ public class NjjPresenter extends NjjContract.Presenter {
     }
 
     @Override
-    public void getVersionInfo() {
-        Subscription subscribe = mModel.getVersionInfo()
+    public void getVersionInfo(int  version) {
+        Subscription subscribe = mModel.getVersionInfo(version)
                 .subscribe(new Subscriber<String>() {
 
                     @Override
