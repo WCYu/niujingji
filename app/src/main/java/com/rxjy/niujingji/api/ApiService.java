@@ -350,13 +350,13 @@ public interface ApiService {
             @Query("card") String card
     );
 
-    /**
-     * 获取银行卡列表
-     */
-    @GET("actionapi/AppHome/GetBankList")
-    Observable<String> getBankListInfo(
-
-    );
+//    /**
+//     * 获取银行卡列表
+//     */
+//    @GET("actionapi/AppHome/GetBankList")
+//    Observable<String> getBankListInfo(
+//
+//    );
 
     /**
      * 获取地区列表
@@ -554,5 +554,25 @@ public interface ApiService {
             @Field("password") String password,
             @Field("vCode") String vCode,
             @Field("appId") String appId
+    );
+    /**
+     * 获取银行卡列表
+     */
+    @GET("AppAgent/GetBackList")
+    Observable<String> getBankListInfo(
+
+    );
+    /**
+     * 新增或修改银行卡信息
+     */
+    @FormUrlEncoded
+    @POST("AppAgent/EditTiXianFangShi")
+    Observable<String> subAddOrUpd(
+            @Field("card_no") String card_no,
+            @Field("BankId") String BankId,
+            @Field("XingMing") String XingMing,
+            @Field("ZhangHao") String ZhangHao,
+            @Field("LeiXing") String LeiXing,
+            @Field("MingCheng") String MingCheng
     );
 }

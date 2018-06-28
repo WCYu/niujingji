@@ -139,6 +139,11 @@
         <activity android:name=".activity.more.DianPuActivity"></activity>
         <activity android:name=".activity.PhotoImageActivity"></activity>
         <activity android:name=".activity.MoreCustomerActivity"></activity>
+        <activity android:name=".activity.HuiShouActivity"/>
+        <activity android:name=".activity.KeShouActivity"/>
+        <activity android:name=".activity.ZhangBenActivity"/>
+        <activity android:name=".activity.ZhangBenDetailsActivity"/>
+        <activity android:name=".activity.TiXianActivity"/>
     </application>
 
 </manifest>

@@ -299,7 +299,6 @@ public class NjjActivity extends BaseActivity<NjjPresenter> implements NjjContra
     public void responseVersionData(final VersionInfo.Version data) {
         if (data.getVersionNo() > Integer.parseInt(App.getVersionCode())) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.newPassword);
-
             builder.setCancelable(false);// 设置点击屏幕Dialog不消失
             View inflate = getLayoutInflater().inflate(R.layout.upgrade_layout, null);
             AutoUtils.setSize(this, false, 720, 1280);

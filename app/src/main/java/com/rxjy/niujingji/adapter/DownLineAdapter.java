@@ -86,6 +86,8 @@ public class DownLineAdapter extends BaseAdapter{
         if(DownLinelist.get(0).getBody().getTable().get(position).getImage()!=null){
             RequestOptions options = new RequestOptions();
             options.centerCrop().transform(new GlideCircleTransform(context));
+            options.placeholder(R.mipmap.xiaxiantoxiang);
+            options.error(R.mipmap.xiaxiantoxiang);
             Glide.with(context).load(DownLinelist.get(0).getBody().getTable().get(position).getImage()).apply(options).into(viewHolder.downlineItHead);
         }
         return view;

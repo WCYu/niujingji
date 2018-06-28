@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rxjy.niujingji.R;
+import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.base.BaseActivity;
 import com.rxjy.niujingji.commons.base.BasePresenter;
 
@@ -25,7 +26,7 @@ public class DianPuActivity extends BaseActivity {
     ImageView ivAdd;
     @Bind(R.id.tv_title)
     TextView tvTitle;
-    public static String url = "http://www.niujingji.cn/static/shop/index.html?CardNo=s0101010102";
+    public static String url = "http://www.niujingji.cn/static/shop/index.html?CardNo="+ App.cardNo;
     @Override
     public int getLayout() {
         return R.layout.activity_dian_pu;
@@ -34,7 +35,7 @@ public class DianPuActivity extends BaseActivity {
     @Override
     public void initData() {
         ButterKnife.bind(this);
-        webDianpu.loadUrl(url);
+
         webDianpu.getSettings().setJavaScriptEnabled(true);
         // 为图片添加放大缩小功能
         webDianpu.getSettings().setUseWideViewPort(true);
@@ -45,6 +46,7 @@ public class DianPuActivity extends BaseActivity {
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });
+        webDianpu.loadUrl(url);
     }
 
     @Override

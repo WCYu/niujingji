@@ -1,20 +1,33 @@
 package com.rxjy.niujingji.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.rxjy.niujingji.R;
+import com.rxjy.niujingji.adapter.HuiShouAdapter;
+import com.rxjy.niujingji.api.ApiEngine;
+import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.base.BaseActivity;
 import com.rxjy.niujingji.commons.base.BasePresenter;
-import com.rxjy.niujingji.fragment.WalletFragment;
+import com.rxjy.niujingji.entity.HuiShouInfo;
+import com.rxjy.niujingji.utils.OkhttpUtils;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by Administrator on 2018/5/23.
@@ -25,10 +38,18 @@ public class WalletActivity extends BaseActivity {
     ImageView ivBack;
     @Bind(R.id.tv_title)
     TextView tvTitle;
-    @Bind(R.id.fl_main)
-    FrameLayout flMain;
-    private WalletFragment walletFragment;
     public static final String TITLE = "钱包";
+    @Bind(R.id.iv_add)
+    ImageView ivAdd;
+    @Bind(R.id.tv_sum)
+    TextView tvSum;
+    @Bind(R.id.lv_qianbao)
+    ListView lvQianbao;
+    @Bind(R.id.tv_tixian)
+    TextView tvTixian;
+    private List<HuiShouInfo.BodyBean.TableBean> table;
+    private HuiShouInfo huiShouInfo;
+
     @Override
     public int getLayout() {
         return R.layout.activity_waller;
@@ -38,21 +59,59 @@ public class WalletActivity extends BaseActivity {
     public void initData() {
         ivBack.setVisibility(View.VISIBLE);
         tvTitle.setText(TITLE);
+        ivAdd.setVisibility(View.VISIBLE);
+        ivAdd.setImageResource(R.mipmap.tixian2);
+        ivAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WalletActivity.this, BankCardActivity.class));
+            }
+        });
+        getData();
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             finish();
+                finish();
             }
         });
-        walletFragment=new WalletFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction action = manager.beginTransaction();
-        if (!walletFragment.isAdded()) {
-            action.add(R.id.fl_main, walletFragment);
-        }
+        tvTixian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WalletActivity.this,TiXianActivity.class));
+            }
+        });
+    }
 
-        action.show(walletFragment);
-        action.commit();
+    private void getData() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("card_no", App.cardNo);
+        map.put("Type", "1,2,3,4,11,12,13,20,30");
+        map.put("ShouZhiType", "1,2");
+        map.put("ZhuangTai", "0");
+        map.put("LeiXing", "2");
+        OkhttpUtils.doPost(ApiEngine.New_SW_API_HOST + "AppAgent/getLiuShuiList", map, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String string = response.body().string();
+                String TAG = "WalletActivity";
+                Log.i(TAG, "会收>>>>>>>>" + string);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Gson gson1 = new Gson();
+                        huiShouInfo = gson1.fromJson(string, HuiShouInfo.class);
+                        table = huiShouInfo.getBody().getTable();
+                        tvSum.setText(huiShouInfo.getBody().getTotal().getBalance() + "");
+                        initAdapter();
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -60,5 +119,14 @@ public class WalletActivity extends BaseActivity {
         return null;
     }
 
+    private void initAdapter() {
+        HuiShouAdapter adapter = new HuiShouAdapter(table, this);
+        lvQianbao.setAdapter(adapter);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
 }

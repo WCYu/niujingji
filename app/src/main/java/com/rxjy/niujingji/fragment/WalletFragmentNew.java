@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.rxjy.niujingji.R;
 import com.rxjy.niujingji.activity.DownLineActivity;
+import com.rxjy.niujingji.activity.HuiShouActivity;
+import com.rxjy.niujingji.activity.KeShouActivity;
 import com.rxjy.niujingji.activity.MoreCustomerActivity;
 import com.rxjy.niujingji.activity.RecommendingActivity;
+import com.rxjy.niujingji.activity.ZhangBenActivity;
 import com.rxjy.niujingji.activity.more.DianPuActivity;
 import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.base.BaseFragment;
@@ -151,13 +154,13 @@ public class WalletFragmentNew extends BaseFragment<WalletFragmentPresenter> imp
                 startActivity(new Intent(getActivity(), MoreCustomerActivity.class));
                 break;
             case R.id.ly_zhangben://账本
-
+                startActivity(new Intent(getActivity(), ZhangBenActivity.class));
                 break;
             case R.id.ly_huishou://会收
-
+                startActivity(new Intent(getActivity(), HuiShouActivity.class));
                 break;
             case R.id.ly_keshou://客收
-
+                startActivity(new Intent(getActivity(), KeShouActivity.class));
                 break;
             case R.id.ly_keyuan://客源
 

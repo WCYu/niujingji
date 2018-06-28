@@ -16,7 +16,7 @@ import com.rxjy.niujingji.commons.App;
 import com.rxjy.niujingji.commons.Constants;
 import com.rxjy.niujingji.commons.base.BaseActivity;
 import com.rxjy.niujingji.commons.utils.PrefUtils;
-import com.rxjy.niujingji.entity.BankListInfo;
+import com.rxjy.niujingji.entity.NewBankListInfo;
 import com.rxjy.niujingji.mvp.contract.AddBankCardContract;
 import com.rxjy.niujingji.mvp.presenter.AddBankCardPresenter;
 
@@ -26,8 +26,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.rxjy.niujingji.commons.App.cardNo;
 
 public class AddBankCardActivity extends BaseActivity<AddBankCardPresenter> implements AddBankCardContract.View {
 
@@ -55,6 +53,7 @@ public class AddBankCardActivity extends BaseActivity<AddBankCardPresenter> impl
     private OptionsPickerView bankPicker;
 
     private String bankName = "";
+    private String bankId = "";
     private String name;
     private String cardNum;
 
@@ -82,6 +81,28 @@ public class AddBankCardActivity extends BaseActivity<AddBankCardPresenter> impl
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 bankName = bankList.get(options1);
+                switch (bankName){
+                    case "中国银行":
+                        bankId = "1";
+                        break;
+                    case "中国工商银行":
+                        bankId = "2";
+                        break;
+                    case "中国建设银行":
+                        bankId = "3";
+                        break;
+                    case "农业银行":
+                        bankId = "4";
+                        break;
+                    case "招商银行":
+                        bankId = "5";
+                        break;
+                    case "浦发银行":
+                        bankId = "6";
+                        break;
+                        default:
+                            break;
+                }
                 tvChoiceBank.setText(bankName);
             }
         }).build();
@@ -149,7 +170,7 @@ public class AddBankCardActivity extends BaseActivity<AddBankCardPresenter> impl
                 builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mPresenter.subAddBankCard(App.token, cardNo, cardNum, bankName, name);
+                        mPresenter.subAddBankCard(App.cardNo,bankId,name,cardNum,"3",bankName);
                     }
                 });
                 builder.setNegativeButton("取消", null);
@@ -173,9 +194,9 @@ public class AddBankCardActivity extends BaseActivity<AddBankCardPresenter> impl
     }
 
     @Override
-    public void responseBankListData(List<BankListInfo.BankInfo> dataList) {
-        for (BankListInfo.BankInfo info : dataList) {
-            bankList.add(info.getBank_name());
+    public void responseBankListData(List<NewBankListInfo.BodyBean.TableBean> dataList) {
+        for (NewBankListInfo.BodyBean.TableBean info : dataList) {
+            bankList.add(info.getBankName());
         }
         bankPicker.setPicker(bankList);
     }

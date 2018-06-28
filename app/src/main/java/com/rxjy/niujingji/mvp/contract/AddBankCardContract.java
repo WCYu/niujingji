@@ -3,7 +3,7 @@ package com.rxjy.niujingji.mvp.contract;
 import com.rxjy.niujingji.commons.base.BaseModel;
 import com.rxjy.niujingji.commons.base.BasePresenter;
 import com.rxjy.niujingji.commons.base.BaseView;
-import com.rxjy.niujingji.entity.BankListInfo;
+import com.rxjy.niujingji.entity.NewBankListInfo;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public interface AddBankCardContract {
 
         void responseAddBankCardError(String msg);
 
-        void responseBankListData(List<BankListInfo.BankInfo> dataList);
+        void responseBankListData(List<NewBankListInfo.BodyBean.TableBean> dataList);
 
         void responseBankListDataError(String msg);
 
@@ -35,11 +35,12 @@ public interface AddBankCardContract {
 
     interface Model extends BaseModel {
         Observable<String> subAddBankCard(
-                String token,
-                String cardNo,
-                String bankCard,
-                String bankName,
-                String bankUserName
+                String card_no,
+                String BankId,
+                String XingMing,
+                String ZhangHao,
+                String LeiXing,
+                String MingCheng
         );
 
         Observable<String> getBankListInfo(
@@ -49,16 +50,30 @@ public interface AddBankCardContract {
 
     abstract class Presenter extends BasePresenter<View, Model> {
         public abstract void subAddBankCard(
-                String token,
-                String cardNo,
-                String bankCard,
-                String bankName,
-                String bankUserName
+                String card_no,
+                String BankId,
+                String XingMing,
+                String ZhangHao,
+                String LeiXing,
+                String MingCheng
         );
 
         public abstract void getBankListInfo(
 
         );
     }
+//    abstract class Presenter extends BasePresenter<View, Model> {
+//        public abstract void subAddBankCard(
+//                String token,
+//                String cardNo,
+//                String bankCard,
+//                String bankName,
+//                String bankUserName
+//        );
+//
+//        public abstract void getBankListInfo(
+//
+//        );
+//    }
 
 }

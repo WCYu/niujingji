@@ -3,7 +3,7 @@
     <color name="colorPrimary">#fe853c</color>
     <color name="colorPrimaryDark">#f8701b</color>
     <color name="colorAccent">#fe853c</color>
-
+    <color name="cir_greenone">#33cd66</color>
     <color name="iv_selector">#66000000</color>
 
     <color name="colorTransparency">#00000000</color>
@@ -21,6 +21,8 @@
     <color name="colorGrayLight">#c9c9c9</color>
 
     <color name="colorGray">#c9caca</color>
+
+    <color name="include">#ff9900</color>
 
     <color name="colorGrayDark">#727171</color>
 
